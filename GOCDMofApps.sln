@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.1259
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GOCDMofApps", "GOCDMofApps\GOCDMofApps.csproj", "{9F1980E7-4623-490C-8136-695DAE46A911}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GOCDMOFAPPS", "GOCDMofApps\GOCDMOFAPPS.csproj", "{9F1980E7-4623-490C-8136-695DAE46A911}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

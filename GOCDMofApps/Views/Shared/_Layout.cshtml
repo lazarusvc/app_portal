@@ -3,40 +3,76 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/Content/css")
+    <title>@ViewBag.Title - GOCD Apps Portal</title>
+    @Styles.Render("~/Content/metro")
     @Scripts.Render("~/bundles/modernizr")
+
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Tokyo+Zoo&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
+
+    @if (Request.IsAuthenticated)
+    {
+        @Html.Partial("~/Views/Shared/_SessionTimeout.cshtml")
+    }
+
+    <div data-role="appbar" data-expand-point="md">
+        <a href="@Url.Action("Index","Home")" class="brand no-hover">
+            <span class="mif-apps mif-3x" style="margin-right:10px;"></span> Apps
+        </a>
+        <ul class="app-bar-menu">
+            <li>@Html.ActionLink("Login", "Login", "Account")</li>
+            @if (Request.IsAuthenticated)
+            {
+                <li class="group-title"><span class="mif-user"></span> signed in as - @User.Identity.Name!</li>
+                <li>@Html.ActionLink("Sign Out", "LogOff", "Account")</li>
+            }
+        </ul>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="cell-2" style="background: #f8f8f8;">
+                <ul class="sidebar-menu" style="margin-top: 50px">
+                    <li class="divider"></li>
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <br />
+                    <br />
+                    <li class="divider"></li>
+                    @if (Request.IsAuthenticated && Roles.IsUserInRole("admin-issu") || Roles.IsUserInRole("admin-ict"))
+                    {
+                        <li class="divider"></li>
+                        <li class="group-title"><span class="mif-cog"></span> Settings</li>
+                        <li>@Html.ActionLink("Apps", "Index", "Apps")</li>
+                        <li>@Html.ActionLink("Apps Type", "Index", "Apps_Type")</li>
+                        <li>@Html.ActionLink("Apps Category", "Index", "Apps_Category")</li>
+                        <li>@Html.ActionLink("Document", "Index", "Apps_Document")</li>
+                        <li>@Html.ActionLink("Users", "Index", "Apps_Users")</li>
+                        <li>@Html.ActionLink("User Roles", "Index", "Apps_UsersRole")</li>
+                        <li>@Html.ActionLink("Reports", "Index", "Apps_reports")</li>
+                        <li>@Html.ActionLink("Reports Parameter", "Index", "Apps_reports_params")</li>
+                        <li>@Html.ActionLink("Processes Parameter", "Index", "Apps_REF_processes")</li>
+                    }
                 </ul>
+            </div>
+            <div class="cell-10">
+                <br />
+                <br />
+                @RenderBody()
+                <hr />
+                <footer>
+                    <p>&copy; @DateTime.Now.Year - Government of the Commonwealth of Dominica. Dept: Information Systems Support Unit</p>
+                </footer>
             </div>
         </div>
     </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-    </div>
+
 
     @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/metro")
     @RenderSection("scripts", required: false)
+
 </body>
 </html>

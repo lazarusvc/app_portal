@@ -1,0 +1,44 @@
+﻿@model GOCDMofApps.Models.Apps_processes
+
+@{
+    ViewBag.Title = "Create  Apps_processes";
+}
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">       
+        <div class="grid" style="background: #FFFFFF; border-radius: 10px; width: 100%; padding: 20px;">
+            <div class="row">
+                <div class="cell-12">
+
+                    <h3 class="fg-darkGray">@Html.ActionLink("<<", null, null, null, new { href = Request.UrlReferrer }) | NEW:: Custom Processes</h3>
+
+                    @Html.ValidationSummary(true, "", new { @class = "fg-magenta" })
+
+                    @Html.EditorFor(model => model.sp_datasource, new { htmlAttributes = new { data_role = "input", data_prepend = "Datasource: ", placeholder = "SERVER NAME" } })
+                    @Html.ValidationMessageFor(model => model.sp_datasource, "", new { @class = "fg-magenta" })
+
+                    @Html.EditorFor(model => model.sp_name, new { htmlAttributes = new { data_role = "input", data_prepend = "Stored Procedure: ", placeholder = "_usp_sp NAME" } })
+                    @Html.ValidationMessageFor(model => model.sp_name, "", new { @class = "fg-magenta" })
+
+                    @Html.EditorFor(model => model.sp_desc, new { htmlAttributes = new { data_role = "input", data_prepend = "Description: ", placeholder = "Run _usp_sp job" } })
+                    @Html.ValidationMessageFor(model => model.sp_desc, "", new { @class = "fg-magenta" })
+
+                    @Html.EditorFor(model => model.sp_database, new { htmlAttributes = new { data_role = "input", data_prepend = "Database: ", placeholder = "DB NAME" } })
+                    @Html.ValidationMessageFor(model => model.sp_database, "", new { @class = "fg-magenta" })
+
+                    @Html.EditorFor(model => model.sp_databse__user, new { htmlAttributes = new { data_role = "input", data_prepend = "User: ", placeholder = "DB user" } })
+                    @Html.ValidationMessageFor(model => model.sp_databse__user, "", new { @class = "fg-magenta" })
+
+                    @Html.EditorFor(model => model.sp_databse__pass, new { htmlAttributes = new { data_role = "input", @Type = "password", data_prepend = "Password: ", placeholder = "DB password" } })
+                    @Html.ValidationMessageFor(model => model.sp_databse__pass, "", new { @class = "fg-magenta" })
+                    <br/>
+                    <input type="submit" value="Save" class="button yellow large" style="width: 100%;" />
+                </div>
+            </div>
+        </div>
+    </div>
+}
+

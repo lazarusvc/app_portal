@@ -45,10 +45,42 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.ReportViewer.Common, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportViewer.Runtime.Common.12.0.2402.15\lib\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportViewer.Runtime.Common.12.0.2402.15\lib\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Design, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1484.0\lib\net40\Microsoft.ReportViewer.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportViewer.Runtime.Common.12.0.2402.15\lib\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebDesign, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1484.0\lib\net40\Microsoft.ReportViewer.WebDesign.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportViewer.Runtime.WebForms.12.0.2402.15\lib\Microsoft.ReportViewer.WebForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
+    <Reference Include="ReportViewerForMvc, Version=1.1.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ReportViewerForMvc14.140.1000.523\lib\net45\ReportViewerForMvc.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -120,23 +152,224 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AppsController.cs" />
+    <Compile Include="Controllers\Apps_CategoryController.cs" />
+    <Compile Include="Controllers\Apps_DocumentController.cs" />
+    <Compile Include="Controllers\Apps_processesController.cs" />
+    <Compile Include="Controllers\Apps_REF_processesController.cs" />
+    <Compile Include="Controllers\Apps_reportsController.cs" />
+    <Compile Include="Controllers\Apps_reports_paramsController.cs" />
+    <Compile Include="Controllers\Apps_TypeController.cs" />
+    <Compile Include="Controllers\Apps_UsersController.cs" />
+    <Compile Include="Controllers\Apps_UsersRoleController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Apps.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Apps_Category.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Apps_Document.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Apps_processes.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Apps_REF_processes.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Apps_reports.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Apps_reports_params.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Apps_Type.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Apps_Users.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Apps_UsersRole.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LoginViewModel.cs" />
+    <Compile Include="Models\Model.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vw_search.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MyRoleProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SqlServerTypes\Loader.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\DB.mdf" />
+    <Content Include="App_Data\DB_log.ldf">
+      <DependentUpon>DB.mdf</DependentUpon>
+    </Content>
+    <Content Include="CodeTemplates\AssemblyVersions.xml" />
+    <Content Include="CodeTemplates\PackageVersions.xml" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Image\34-payroll-feature_image2232582014.jpg" />
+    <Content Include="Content\Image\app-placeholder.png" />
+    <Content Include="Content\Image\audit_reports2246281461.PNG" />
+    <Content Include="Content\Image\best-money-making-apps-android-739x3692216378757.jpg" />
+    <Content Include="Content\Image\budget_app2200585203.png" />
+    <Content Include="Content\Image\budget_app2208556806.png" />
+    <Content Include="Content\Image\budget_app2244306356.png" />
+    <Content Include="Content\Image\Capture2212202130.PNG" />
+    <Content Include="Content\Image\Capture2222078868.PNG" />
+    <Content Include="Content\Image\Capture2230001525.PNG" />
+    <Content Include="Content\Image\Capture2231086951.PNG" />
+    <Content Include="Content\Image\Capture2233100180.PNG" />
+    <Content Include="Content\Image\Capture2233422061.PNG" />
+    <Content Include="Content\Image\Capture2238410860.PNG" />
+    <Content Include="Content\Image\Capture2241585081.PNG" />
+    <Content Include="Content\Image\Capture2249506993.PNG" />
+    <Content Include="Content\Image\Capture2251496681.PNG" />
+    <Content Include="Content\Image\Capture2259122479.PNG" />
+    <Content Include="Content\Image\Capture2259461926.PNG" />
+    <Content Include="Content\Image\coa.svg" />
+    <Content Include="Content\Image\cover2252208524.png" />
+    <Content Include="Content\Image\create-your-database-in-ms-access-sql-server-mysql2209407302.jpg" />
+    <Content Include="Content\Image\document-placeholder.png" />
+    <Content Include="Content\Image\document.jpg" />
+    <Content Include="Content\Image\dotproject2240246258.png" />
+    <Content Include="Content\Image\download %281%292200447729.png" />
+    <Content Include="Content\Image\download %281%292236113010.png" />
+    <Content Include="Content\Image\download %282%292237201760.png" />
+    <Content Include="Content\Image\download2203344961.png" />
+    <Content Include="Content\Image\download2207436772.jfif" />
+    <Content Include="Content\Image\download2216243912.png" />
+    <Content Include="Content\Image\download2229485651.png" />
+    <Content Include="Content\Image\helpdesk-featured2209153129.jpg" />
+    <Content Include="Content\Image\how-to.jpg" />
+    <Content Include="Content\Image\HRM_Logo2224154343.jpg" />
+    <Content Include="Content\Image\images2238063050.png" />
+    <Content Include="Content\Image\manageengine2231096229.png" />
+    <Content Include="Content\Image\passwords.png" />
+    <Content Include="Content\Image\pay2231492448.png" />
+    <Content Include="Content\Image\pay2244323103.png" />
+    <Content Include="Content\Image\pensionAssistance2220550361.png" />
+    <Content Include="Content\Image\pensionAssistance22205503612241524087.png" />
+    <Content Include="Content\Image\pensionCert2236235867.png" />
+    <Content Include="Content\Image\processes.png" />
+    <Content Include="Content\Image\qnap-to-b22232184229.jpg" />
+    <Content Include="Content\Image\qnap-to-b22233320559.jpg" />
+    <Content Include="Content\Image\qnap-to-b22234075308.jpg" />
+    <Content Include="Content\Image\re46mailer2244306775.PNG" />
+    <Content Include="Content\Image\reporting-services-logo2249272870.png" />
+    <Content Include="Content\Image\reports.png" />
+    <Content Include="Content\Image\reportsmailer2243059847.PNG" />
+    <Content Include="Content\Image\reportsmailer2245124077.PNG" />
+    <Content Include="Content\Image\script.jpg" />
+    <Content Include="Content\Image\ss_reporting2223562315.png" />
+    <Content Include="Content\Image\tutorials.png" />
+    <Content Include="Content\Image\vcas2225028524.PNG" />
+    <Content Include="Content\Image\visual.png" />
+    <Content Include="Content\metro-all.css" />
+    <Content Include="Content\metro-all.min.css" />
+    <Content Include="Content\metro-colors.css" />
+    <Content Include="Content\metro-colors.min.css" />
+    <Content Include="Content\metro-common.css" />
+    <Content Include="Content\metro-common.min.css" />
+    <Content Include="Content\metro-components.css" />
+    <Content Include="Content\metro-components.min.css" />
+    <Content Include="Content\metro-icons.css" />
+    <Content Include="Content\metro-icons.min.css" />
+    <Content Include="Content\metro-reset.css" />
+    <Content Include="Content\metro-reset.min.css" />
+    <Content Include="Content\metro.css" />
+    <Content Include="Content\metro.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="mif\metro.svg" />
+    <Content Include="Models\Model.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Model.Context.cs</LastGenOutput>
+      <DependentUpon>Model.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\Model.edmx.sql" />
+    <Content Include="Models\Model.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Model.cs</LastGenOutput>
+      <DependentUpon>Model.edmx</DependentUpon>
+    </Content>
+    <Content Include="ReportViewerWebForm.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <EntityDeploy Include="Models\Model.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Model.edmx.diagram">
+      <DependentUpon>Model.edmx</DependentUpon>
+    </Content>
+    <Content Include="mif\metro.woff" />
+    <Content Include="mif\metro.ttf" />
+    <Content Include="mif\metro.json" />
+    <Content Include="CodeTemplates\ApiControllerEmpty\Controller.cs.t4" />
+    <Content Include="CodeTemplates\ApiControllerWithActions\Controller.cs.t4" />
+    <Content Include="CodeTemplates\ApiControllerWithContext\Controller.cs.t4" />
+    <Content Include="CodeTemplates\ApiDependencyCodeGenerator\Global.asax.cs.t4" />
+    <Content Include="CodeTemplates\ApiDependencyCodeGenerator\Global.cs.t4" />
+    <Content Include="CodeTemplates\ApiDependencyCodeGenerator\WebApiConfig.cs.t4" />
+    <Content Include="CodeTemplates\MvcArea\Area.cs.t4" />
+    <Content Include="CodeTemplates\MvcArea\web.cs.t4" />
+    <Content Include="CodeTemplates\MvcControllerEmpty\Controller.cs.t4" />
+    <Content Include="CodeTemplates\MvcControllerWithActions\Controller.cs.t4" />
+    <Content Include="CodeTemplates\MvcControllerWithContext\Controller.cs.t4" />
+    <Content Include="CodeTemplates\MvcFullDependencyCodeGenerator\BundleConfig.cs.t4" />
+    <Content Include="CodeTemplates\MvcFullDependencyCodeGenerator\Error.cshtml" />
+    <Content Include="CodeTemplates\MvcFullDependencyCodeGenerator\Error.vbhtml" />
+    <Content Include="CodeTemplates\MvcFullDependencyCodeGenerator\FilterConfig.cs.t4" />
+    <Content Include="CodeTemplates\MvcFullDependencyCodeGenerator\Global.asax.cs.t4" />
+    <Content Include="CodeTemplates\MvcFullDependencyCodeGenerator\Global.cs.t4" />
+    <Content Include="CodeTemplates\MvcFullDependencyCodeGenerator\RouteConfig.cs.t4" />
+    <Content Include="CodeTemplates\MvcFullDependencyCodeGenerator\Site.cs.t4" />
+    <Content Include="CodeTemplates\MvcFullDependencyCodeGenerator\web.cs.t4" />
+    <Content Include="CodeTemplates\MvcFullDependencyCodeGenerator\_Layout.cs.t4" />
+    <Content Include="CodeTemplates\MvcFullDependencyCodeGenerator\_ViewStart.cs.t4" />
+    <Content Include="CodeTemplates\MvcMinimalDependencyCodeGenerator\Global.asax.cs.t4" />
+    <Content Include="CodeTemplates\MvcMinimalDependencyCodeGenerator\Global.cs.t4" />
+    <Content Include="CodeTemplates\MvcMinimalDependencyCodeGenerator\RouteConfig.cs.t4" />
+    <Content Include="CodeTemplates\MvcMinimalDependencyCodeGenerator\web.cs.t4" />
+    <Content Include="CodeTemplates\MvcViewWithoutModel\Empty.cs.t4" />
+    <Content Include="CodeTemplates\MvcViewWithoutModel\Imports.include.t4" />
+    <Content Include="CodeTemplates\MvcView\Create.cs.t4" />
+    <Content Include="CodeTemplates\MvcView\Delete.cs.t4" />
+    <Content Include="CodeTemplates\MvcView\Details.cs.t4" />
+    <Content Include="CodeTemplates\MvcView\Edit.cs.t4" />
+    <Content Include="CodeTemplates\MvcView\Empty.cs.t4" />
+    <Content Include="CodeTemplates\MvcView\Imports.include.t4" />
+    <Content Include="CodeTemplates\MvcView\List.cs.t4" />
+    <Content Include="CodeTemplates\MvcView\ModelMetadataFunctions.cs.include.t4" />
+    <Content Include="CodeTemplates\ODataControllerWithActions\Controller.cs.t4" />
+    <Content Include="CodeTemplates\ODataControllerWithContext\Controller.cs.t4" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -147,8 +380,25 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\metro.js" />
+    <Content Include="Scripts\metro.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Web.config" />
+    <Content Include="SqlServerTypes\readme.htm" />
+    <Content Include="SqlServerTypes\x64\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x64\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -162,11 +412,68 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Scripts\metro.min.js.map" />
+    <Content Include="Views\Apps_UsersRole\Create.cshtml" />
+    <Content Include="Views\Apps_UsersRole\Delete.cshtml" />
+    <Content Include="Views\Apps_UsersRole\Details.cshtml" />
+    <Content Include="Views\Apps_UsersRole\Edit.cshtml" />
+    <Content Include="Views\Apps_UsersRole\Index.cshtml" />
+    <Content Include="Views\Apps_Category\Create.cshtml" />
+    <Content Include="Views\Apps_Category\Delete.cshtml" />
+    <Content Include="Views\Apps_Category\Details.cshtml" />
+    <Content Include="Views\Apps_Category\Edit.cshtml" />
+    <Content Include="Views\Apps_Category\Index.cshtml" />
+    <Content Include="Views\Apps_Type\Create.cshtml" />
+    <Content Include="Views\Apps_Type\Delete.cshtml" />
+    <Content Include="Views\Apps_Type\Details.cshtml" />
+    <Content Include="Views\Apps_Type\Edit.cshtml" />
+    <Content Include="Views\Apps_Type\Index.cshtml" />
+    <Content Include="Views\Apps_Users\Create.cshtml" />
+    <Content Include="Views\Apps_Users\Delete.cshtml" />
+    <Content Include="Views\Apps_Users\Details.cshtml" />
+    <Content Include="Views\Apps_Users\Edit.cshtml" />
+    <Content Include="Views\Apps_Document\Create.cshtml" />
+    <Content Include="Views\Apps_Document\Delete.cshtml" />
+    <Content Include="Views\Apps_Document\Details.cshtml" />
+    <Content Include="Views\Apps_Document\Edit.cshtml" />
+    <Content Include="Views\Apps_Document\Index.cshtml" />
+    <Content Include="Views\Apps\Create.cshtml" />
+    <Content Include="Views\Apps\Delete.cshtml" />
+    <Content Include="Views\Apps\Details.cshtml" />
+    <Content Include="Views\Apps\Edit.cshtml" />
+    <Content Include="Views\Apps\Index.cshtml" />
+    <Content Include="Views\Home\Reports.cshtml" />
+    <Content Include="Views\Apps_reports\Create.cshtml" />
+    <Content Include="Views\Apps_reports\Delete.cshtml" />
+    <Content Include="Views\Apps_reports\Details.cshtml" />
+    <Content Include="Views\Apps_reports\Edit.cshtml" />
+    <Content Include="Views\Apps_reports\Index.cshtml" />
+    <Content Include="Views\Apps_reports_params\Create.cshtml" />
+    <Content Include="Views\Apps_reports_params\Delete.cshtml" />
+    <Content Include="Views\Apps_reports_params\Details.cshtml" />
+    <Content Include="Views\Apps_reports_params\Edit.cshtml" />
+    <Content Include="Views\Apps_reports_params\Index.cshtml" />
+    <Content Include="Views\Home\AccessDenied.cshtml" />
+    <Content Include="Views\Shared\_partial__Apps_Doc.cshtml" />
+    <Content Include="Views\Account\login.cshtml" />
+    <Content Include="Views\Shared\_partial__Apps_Document.cshtml" />
+    <Content Include="Views\Shared\_SessionTimeout.cshtml" />
+    <Content Include="Views\Apps_processes\Create.cshtml" />
+    <Content Include="Views\Apps_processes\Delete.cshtml" />
+    <Content Include="Views\Apps_processes\Details.cshtml" />
+    <Content Include="Views\Apps_processes\Edit.cshtml" />
+    <Content Include="Views\Apps_processes\Index.cshtml" />
+    <Content Include="Views\Apps_REF_processes\Create.cshtml" />
+    <Content Include="Views\Apps_REF_processes\Delete.cshtml" />
+    <Content Include="Views\Apps_REF_processes\Details.cshtml" />
+    <Content Include="Views\Apps_REF_processes\Edit.cshtml" />
+    <Content Include="Views\Apps_REF_processes\Index.cshtml" />
+    <Content Include="Views\Apps_processes\ActionComplete.cshtml" />
+    <Content Include="Views\Apps_processes\ActionParams.cshtml" />
+    <Content Include="Views\Shared\_processesParamsIndex.cshtml" />
+    <Content Include="Views\Apps_REF_processes\CreateCombined.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -179,6 +486,9 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

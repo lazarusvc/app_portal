@@ -22,3 +22,112 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.prepend {
+    width: 20% !important;
+}
+
+/*
+    ***************************************************
+    CUSTOM CSS
+    ***************************************************
+*/
+.big-title {
+    font-family: 'Zen Tokyo Zoo', cursive;
+}
+
+.gradientBG {
+    background: rgb(255,255,255);
+    background: linear-gradient(122deg, rgba(255,255,255,1) 42%, rgba(241,187,40,1) 75%, rgba(52,110,41,1) 100%);
+}
+
+#app_card {
+    color: rgba(52,110,41,1);
+    /* background: linear-gradient( 122deg, rgba(255,255,255,1) 50%, rgba(241,187,40,1) 100%); */
+    background: white;
+}
+
+#app_box {
+    box-shadow: 4px 3px 5px 2px rgba(0,0,0,0.42);
+    -webkit-box-shadow: 4px 3px 5px 2px rgba(0,0,0,0.42);
+    -moz-box-shadow: 4px 3px 5px 2px rgba(0,0,0,0.42);
+}
+
+.card.image-header {
+    box-shadow: 4px 3px 5px 2px rgb(0 0 0 / 42%);
+    -webkit-box-shadow: 4px 3px 5px 2px rgb(0 0 0 / 42%);
+    -moz-box-shadow: 4px 3px 5px 2px rgba(0,0,0,0.42);
+}
+
+.select .select-input {
+    -webkit-box-ordinal-group: 3;
+    order: 2;
+    width: 300px !important;
+}
+
+.select .drop-container {
+    z-index: 9999 !important;
+}
+
+/*
+    ***************************************************
+     File Attachment CSS
+    ***************************************************
+*/
+.files input {
+    outline: 2px dashed #92b0b3;
+    outline-offset: -10px;
+    -webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
+    transition: outline-offset .15s ease-in-out, background-color .15s linear;
+    padding: 120px 0px 85px 2%;
+    text-align: center !important;
+    margin: 0;
+    width: 100% !important;
+}
+
+    .files input:focus {
+        outline: 2px dashed #92b0b3;
+        outline-offset: -10px;
+        -webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
+        transition: outline-offset .15s ease-in-out, background-color .15s linear;
+        border: 1px solid #92b0b3;
+    }
+
+.files {
+    position: relative
+}
+
+    .files:after {
+        pointer-events: none;
+        position: absolute;
+        top: 60px;
+        left: 5%;
+        width: 50px;
+        right: 0;
+        height: 56px;
+        content: "";
+        background-image: url(https://image.flaticon.com/icons/png/128/109/109612.png);
+        display: block;
+        background-size: 100%;
+        background-repeat: no-repeat;
+    }
+
+.color input {
+    background-color: #f1f1f1;
+}
+
+.files:before {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    width: 20%;
+    pointer-events: none;
+    right: 0;
+    height: 57px;
+    content: " or drag it here. ";
+    display: block;
+    color: #2ea591;
+    font-weight: 600;
+    text-transform: capitalize;
+    text-align: center;
+}

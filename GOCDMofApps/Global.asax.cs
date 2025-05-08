@@ -17,5 +17,10 @@ namespace GOCDMofApps
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
+        protected void Session_Start(object sender, EventArgs e)
+        {
+            /* Sets the session duration to 60 minutes. */
+            Session.Timeout = 3600;
+        }
     }
 }

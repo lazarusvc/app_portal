@@ -1,0 +1,685 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Apps">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar(max)" />
+          <Property Name="desc" Type="nvarchar(max)" />
+          <Property Name="Apps_CategoryId" Type="int" Nullable="false" />
+          <Property Name="url" Type="nvarchar(max)" />
+          <Property Name="Apps_TypeId" Type="int" Nullable="false" />
+          <Property Name="loc" Type="nvarchar(max)" />
+          <Property Name="featured" Type="bit" />
+          <Property Name="active" Type="bit" />
+          <Property Name="image" Type="nvarchar(max)" />
+          <Property Name="Apps_UsersRoleId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Apps_Category">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Apps_Document">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar(max)" />
+          <Property Name="desc" Type="nvarchar(max)" />
+          <Property Name="media" Type="nvarchar(max)" />
+          <Property Name="media_type" Type="nvarchar(max)" />
+          <Property Name="Apps_UsersRoleId" Type="int" Nullable="false" />
+          <Property Name="tags" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Apps_processes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sp_name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="sp_desc" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="sp_database" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="sp_databse__user" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="sp_databse__pass" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="sp_datasource" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Apps_REF_processes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="param_key" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="param_value" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="param_dataType" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="FK_processesId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Apps_reports">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="desc" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="FK_REF_userRolesId" Type="int" Nullable="false" />
+          <Property Name="paramCheck" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Apps_reports_params">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="param_key" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="param_value" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="param_dataType" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="FK_REF_reportsId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Apps_Type">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Apps_Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="firstName" Type="nvarchar(max)" />
+          <Property Name="lastName" Type="nvarchar(max)" />
+          <Property Name="username" Type="nvarchar(max)" />
+          <Property Name="Apps_UsersRoleId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Apps_UsersRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'GOCDMoFApps.dbo.vw_search' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vw_search">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="url" Type="nvarchar(max)" />
+          <Property Name="name" Type="nvarchar(max)" />
+        </EntityType>
+        <Association Name="FK_Apps_CategoryApps">
+          <End Role="Apps_Category" Type="Self.Apps_Category" Multiplicity="1" />
+          <End Role="Apps" Type="Self.Apps" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Apps_Category">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Apps">
+              <PropertyRef Name="Apps_CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Apps_processesApps_REF_processes">
+          <End Role="Apps_processes" Type="Self.Apps_processes" Multiplicity="1" />
+          <End Role="Apps_REF_processes" Type="Self.Apps_REF_processes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Apps_processes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Apps_REF_processes">
+              <PropertyRef Name="FK_processesId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Apps_reportsApps_reports_params">
+          <End Role="Apps_reports" Type="Self.Apps_reports" Multiplicity="1" />
+          <End Role="Apps_reports_params" Type="Self.Apps_reports_params" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Apps_reports">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Apps_reports_params">
+              <PropertyRef Name="FK_REF_reportsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Apps_TypeApps">
+          <End Role="Apps_Type" Type="Self.Apps_Type" Multiplicity="1" />
+          <End Role="Apps" Type="Self.Apps" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Apps_Type">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Apps">
+              <PropertyRef Name="Apps_TypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Apps_userRolesApps_reports">
+          <End Role="Apps_UsersRole" Type="Self.Apps_UsersRole" Multiplicity="1" />
+          <End Role="Apps_reports" Type="Self.Apps_reports" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Apps_UsersRole">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Apps_reports">
+              <PropertyRef Name="FK_REF_userRolesId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Apps_UsersRoleApps">
+          <End Role="Apps_UsersRole" Type="Self.Apps_UsersRole" Multiplicity="1" />
+          <End Role="Apps" Type="Self.Apps" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Apps_UsersRole">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Apps">
+              <PropertyRef Name="Apps_UsersRoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Apps_UsersRoleApps_Document">
+          <End Role="Apps_UsersRole" Type="Self.Apps_UsersRole" Multiplicity="1" />
+          <End Role="Apps_Document" Type="Self.Apps_Document" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Apps_UsersRole">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Apps_Document">
+              <PropertyRef Name="Apps_UsersRoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Apps_UsersRoleApps_Users">
+          <End Role="Apps_UsersRole" Type="Self.Apps_UsersRole" Multiplicity="1" />
+          <End Role="Apps_Users" Type="Self.Apps_Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Apps_UsersRole">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Apps_Users">
+              <PropertyRef Name="Apps_UsersRoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="Apps" EntityType="Self.Apps" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Apps_Category" EntityType="Self.Apps_Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Apps_Document" EntityType="Self.Apps_Document" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Apps_processes" EntityType="Self.Apps_processes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Apps_REF_processes" EntityType="Self.Apps_REF_processes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Apps_reports" EntityType="Self.Apps_reports" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Apps_reports_params" EntityType="Self.Apps_reports_params" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Apps_Type" EntityType="Self.Apps_Type" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Apps_Users" EntityType="Self.Apps_Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Apps_UsersRole" EntityType="Self.Apps_UsersRole" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="vw_search" EntityType="Self.vw_search" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_search].[Id] AS [Id], 
+    [vw_search].[url] AS [url], 
+    [vw_search].[name] AS [name]
+    FROM [dbo].[vw_search] AS [vw_search]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Apps_CategoryApps" Association="Self.FK_Apps_CategoryApps">
+            <End Role="Apps_Category" EntitySet="Apps_Category" />
+            <End Role="Apps" EntitySet="Apps" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Apps_processesApps_REF_processes" Association="Self.FK_Apps_processesApps_REF_processes">
+            <End Role="Apps_processes" EntitySet="Apps_processes" />
+            <End Role="Apps_REF_processes" EntitySet="Apps_REF_processes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Apps_reportsApps_reports_params" Association="Self.FK_Apps_reportsApps_reports_params">
+            <End Role="Apps_reports" EntitySet="Apps_reports" />
+            <End Role="Apps_reports_params" EntitySet="Apps_reports_params" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Apps_TypeApps" Association="Self.FK_Apps_TypeApps">
+            <End Role="Apps_Type" EntitySet="Apps_Type" />
+            <End Role="Apps" EntitySet="Apps" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Apps_userRolesApps_reports" Association="Self.FK_Apps_userRolesApps_reports">
+            <End Role="Apps_UsersRole" EntitySet="Apps_UsersRole" />
+            <End Role="Apps_reports" EntitySet="Apps_reports" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Apps_UsersRoleApps" Association="Self.FK_Apps_UsersRoleApps">
+            <End Role="Apps_UsersRole" EntitySet="Apps_UsersRole" />
+            <End Role="Apps" EntitySet="Apps" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Apps_UsersRoleApps_Document" Association="Self.FK_Apps_UsersRoleApps_Document">
+            <End Role="Apps_UsersRole" EntitySet="Apps_UsersRole" />
+            <End Role="Apps_Document" EntitySet="Apps_Document" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Apps_UsersRoleApps_Users" Association="Self.FK_Apps_UsersRoleApps_Users">
+            <End Role="Apps_UsersRole" EntitySet="Apps_UsersRole" />
+            <End Role="Apps_Users" EntitySet="Apps_Users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Model" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="ModelContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Apps" EntityType="Model.Apps" />
+          <EntitySet Name="Apps_Category" EntityType="Model.Apps_Category" />
+          <AssociationSet Name="Apps_CategoryApps" Association="Model.Apps_CategoryApps">
+            <End Role="Apps_Category" EntitySet="Apps_Category" />
+            <End Role="Apps" EntitySet="Apps" />
+          </AssociationSet>
+          <EntitySet Name="Apps_Type" EntityType="Model.Apps_Type" />
+          <AssociationSet Name="Apps_TypeApps" Association="Model.Apps_TypeApps">
+            <End Role="Apps_Type" EntitySet="Apps_Type" />
+            <End Role="Apps" EntitySet="Apps" />
+          </AssociationSet>
+          <EntitySet Name="Apps_Users" EntityType="Model.Apps_Users" />
+          <EntitySet Name="Apps_Document" EntityType="Model.Apps_Document" />
+          <EntitySet Name="Apps_UsersRole" EntityType="Model.Apps_UsersRole" />
+          <AssociationSet Name="Apps_UsersRoleApps_Users" Association="Model.Apps_UsersRoleApps_Users">
+            <End Role="Apps_UsersRole" EntitySet="Apps_UsersRole" />
+            <End Role="Apps_Users" EntitySet="Apps_Users" />
+          </AssociationSet>
+          <AssociationSet Name="Apps_UsersRoleApps_Document" Association="Model.Apps_UsersRoleApps_Document">
+            <End Role="Apps_UsersRole" EntitySet="Apps_UsersRole" />
+            <End Role="Apps_Document" EntitySet="Apps_Document" />
+          </AssociationSet>
+          <AssociationSet Name="Apps_UsersRoleApps" Association="Model.Apps_UsersRoleApps">
+            <End Role="Apps_UsersRole" EntitySet="Apps_UsersRole" />
+            <End Role="Apps" EntitySet="Apps" />
+          </AssociationSet>
+          <EntitySet Name="vw_search" EntityType="Model.vw_search" />
+          <EntitySet Name="Apps_reports" EntityType="Model.Apps_reports" />
+          <EntitySet Name="Apps_reports_params" EntityType="Model.Apps_reports_params" />
+          <AssociationSet Name="FK_Apps_reportsApps_reports_params" Association="Model.FK_Apps_reportsApps_reports_params">
+            <End Role="Apps_reports" EntitySet="Apps_reports" />
+            <End Role="Apps_reports_params" EntitySet="Apps_reports_params" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Apps_userRolesApps_reports" Association="Model.FK_Apps_userRolesApps_reports">
+            <End Role="Apps_UsersRole" EntitySet="Apps_UsersRole" />
+            <End Role="Apps_reports" EntitySet="Apps_reports" />
+          </AssociationSet>
+          <EntitySet Name="Apps_processes" EntityType="Model.Apps_processes" />
+          <EntitySet Name="Apps_REF_processes" EntityType="Model.Apps_REF_processes" />
+          <AssociationSet Name="FK_Apps_processesApps_REF_processes" Association="Model.FK_Apps_processesApps_REF_processes">
+            <End Role="Apps_processes" EntitySet="Apps_processes" />
+            <End Role="Apps_REF_processes" EntitySet="Apps_REF_processes" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Apps">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="desc" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Apps_CategoryId" Type="Int32" Nullable="false" />
+          <Property Name="url" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Apps_TypeId" Type="Int32" Nullable="false" />
+          <Property Name="loc" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="featured" Type="Boolean" />
+          <Property Name="active" Type="Boolean" />
+          <Property Name="image" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Apps_Category" Relationship="Model.Apps_CategoryApps" FromRole="Apps" ToRole="Apps_Category" />
+          <NavigationProperty Name="Apps_Type" Relationship="Model.Apps_TypeApps" FromRole="Apps" ToRole="Apps_Type" />
+          <NavigationProperty Name="Apps_UsersRole" Relationship="Model.Apps_UsersRoleApps" FromRole="Apps" ToRole="Apps_UsersRole" />
+          <Property Name="Apps_UsersRoleId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Apps_Category">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Apps" Relationship="Model.Apps_CategoryApps" FromRole="Apps_Category" ToRole="Apps" />
+        </EntityType>
+        <Association Name="Apps_CategoryApps">
+          <End Type="Model.Apps_Category" Role="Apps_Category" Multiplicity="1" />
+          <End Type="Model.Apps" Role="Apps" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Apps_Category">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Apps">
+              <PropertyRef Name="Apps_CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Apps_Type">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Apps" Relationship="Model.Apps_TypeApps" FromRole="Apps_Type" ToRole="Apps" />
+        </EntityType>
+        <Association Name="Apps_TypeApps">
+          <End Type="Model.Apps_Type" Role="Apps_Type" Multiplicity="1" />
+          <End Type="Model.Apps" Role="Apps" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Apps_Type">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Apps">
+              <PropertyRef Name="Apps_TypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Apps_Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="firstName" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="lastName" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="username" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Apps_UsersRoleId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Apps_UsersRole" Relationship="Model.Apps_UsersRoleApps_Users" FromRole="Apps_Users" ToRole="Apps_UsersRole" />
+        </EntityType>
+        <EntityType Name="Apps_Document">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="desc" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="media" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="media_type" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Apps_UsersRole" Relationship="Model.Apps_UsersRoleApps_Document" FromRole="Apps_Document" ToRole="Apps_UsersRole" />
+          <Property Name="Apps_UsersRoleId" Type="Int32" Nullable="false" />
+          <Property Name="tags" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Apps_UsersRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Apps_Users" Relationship="Model.Apps_UsersRoleApps_Users" FromRole="Apps_UsersRole" ToRole="Apps_Users" />
+          <NavigationProperty Name="Apps_Document" Relationship="Model.Apps_UsersRoleApps_Document" FromRole="Apps_UsersRole" ToRole="Apps_Document" />
+          <NavigationProperty Name="Apps" Relationship="Model.Apps_UsersRoleApps" FromRole="Apps_UsersRole" ToRole="Apps" />
+          <NavigationProperty Name="Apps_reports" Relationship="Model.FK_Apps_userRolesApps_reports" FromRole="Apps_UsersRole" ToRole="Apps_reports" />
+        </EntityType>
+        <Association Name="Apps_UsersRoleApps_Users">
+          <End Type="Model.Apps_UsersRole" Role="Apps_UsersRole" Multiplicity="1" />
+          <End Type="Model.Apps_Users" Role="Apps_Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Apps_UsersRole">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Apps_Users">
+              <PropertyRef Name="Apps_UsersRoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Apps_UsersRoleApps_Document">
+          <End Type="Model.Apps_UsersRole" Role="Apps_UsersRole" Multiplicity="1" />
+          <End Type="Model.Apps_Document" Role="Apps_Document" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Apps_UsersRole">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Apps_Document">
+              <PropertyRef Name="Apps_UsersRoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Apps_UsersRoleApps">
+          <End Type="Model.Apps_UsersRole" Role="Apps_UsersRole" Multiplicity="1" />
+          <End Type="Model.Apps" Role="Apps" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Apps_UsersRole">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Apps">
+              <PropertyRef Name="Apps_UsersRoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="vw_search">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="url" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Apps_reports">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="desc" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FK_REF_userRolesId" Type="Int32" Nullable="false" />
+          <Property Name="paramCheck" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Apps_reports_params" Relationship="Model.FK_Apps_reportsApps_reports_params" FromRole="Apps_reports" ToRole="Apps_reports_params" />
+          <NavigationProperty Name="Apps_UsersRole" Relationship="Model.FK_Apps_userRolesApps_reports" FromRole="Apps_reports" ToRole="Apps_UsersRole" />
+        </EntityType>
+        <EntityType Name="Apps_reports_params">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="param_key" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="param_value" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="param_dataType" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FK_REF_reportsId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Apps_reports" Relationship="Model.FK_Apps_reportsApps_reports_params" FromRole="Apps_reports_params" ToRole="Apps_reports" />
+        </EntityType>
+        <Association Name="FK_Apps_reportsApps_reports_params">
+          <End Type="Model.Apps_reports" Role="Apps_reports" Multiplicity="1" />
+          <End Type="Model.Apps_reports_params" Role="Apps_reports_params" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Apps_reports">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Apps_reports_params">
+              <PropertyRef Name="FK_REF_reportsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Apps_userRolesApps_reports">
+          <End Type="Model.Apps_UsersRole" Role="Apps_UsersRole" Multiplicity="1" />
+          <End Type="Model.Apps_reports" Role="Apps_reports" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Apps_UsersRole">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Apps_reports">
+              <PropertyRef Name="FK_REF_userRolesId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Apps_processes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sp_name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="sp_desc" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="sp_database" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="sp_databse__user" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="sp_databse__pass" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="sp_datasource" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Apps_REF_processes" Relationship="Model.FK_Apps_processesApps_REF_processes" FromRole="Apps_processes" ToRole="Apps_REF_processes" />
+        </EntityType>
+        <EntityType Name="Apps_REF_processes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="param_key" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="param_value" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="param_dataType" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FK_processesId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Apps_processes" Relationship="Model.FK_Apps_processesApps_REF_processes" FromRole="Apps_REF_processes" ToRole="Apps_processes" />
+        </EntityType>
+        <Association Name="FK_Apps_processesApps_REF_processes">
+          <End Type="Model.Apps_processes" Role="Apps_processes" Multiplicity="1" />
+          <End Type="Model.Apps_REF_processes" Role="Apps_REF_processes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Apps_processes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Apps_REF_processes">
+              <PropertyRef Name="FK_processesId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="ModelContainer">
+    <EntitySetMapping Name="Apps">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Apps)">
+        <MappingFragment StoreEntitySet="Apps">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="desc" ColumnName="desc" />
+          <ScalarProperty Name="Apps_CategoryId" ColumnName="Apps_CategoryId" />
+          <ScalarProperty Name="url" ColumnName="url" />
+          <ScalarProperty Name="Apps_TypeId" ColumnName="Apps_TypeId" />
+          <ScalarProperty Name="loc" ColumnName="loc" />
+          <ScalarProperty Name="featured" ColumnName="featured" />
+          <ScalarProperty Name="active" ColumnName="active" />
+          <ScalarProperty Name="image" ColumnName="image" />
+          <ScalarProperty Name="Apps_UsersRoleId" ColumnName="Apps_UsersRoleId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Apps_Category">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Apps_Category)">
+        <MappingFragment StoreEntitySet="Apps_Category">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Apps_Type">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Apps_Type)">
+        <MappingFragment StoreEntitySet="Apps_Type">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Apps_Users">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Apps_Users)">
+        <MappingFragment StoreEntitySet="Apps_Users">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="firstName" ColumnName="firstName" />
+          <ScalarProperty Name="lastName" ColumnName="lastName" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="Apps_UsersRoleId" ColumnName="Apps_UsersRoleId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Apps_Document">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Apps_Document)">
+        <MappingFragment StoreEntitySet="Apps_Document">
+          <ScalarProperty Name="tags" ColumnName="tags" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="desc" ColumnName="desc" />
+          <ScalarProperty Name="media" ColumnName="media" />
+          <ScalarProperty Name="media_type" ColumnName="media_type" />
+          <ScalarProperty Name="Apps_UsersRoleId" ColumnName="Apps_UsersRoleId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Apps_UsersRole">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Apps_UsersRole)">
+        <MappingFragment StoreEntitySet="Apps_UsersRole">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+          <EntitySetMapping Name="vw_search">
+            <EntityTypeMapping TypeName="Model.vw_search">
+              <MappingFragment StoreEntitySet="vw_search">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="url" ColumnName="url" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Apps_reports">
+            <EntityTypeMapping TypeName="Model.Apps_reports">
+              <MappingFragment StoreEntitySet="Apps_reports">
+                <ScalarProperty Name="paramCheck" ColumnName="paramCheck" />
+                <ScalarProperty Name="FK_REF_userRolesId" ColumnName="FK_REF_userRolesId" />
+                <ScalarProperty Name="desc" ColumnName="desc" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Apps_reports_params">
+            <EntityTypeMapping TypeName="Model.Apps_reports_params">
+              <MappingFragment StoreEntitySet="Apps_reports_params">
+                <ScalarProperty Name="FK_REF_reportsId" ColumnName="FK_REF_reportsId" />
+                <ScalarProperty Name="param_dataType" ColumnName="param_dataType" />
+                <ScalarProperty Name="param_value" ColumnName="param_value" />
+                <ScalarProperty Name="param_key" ColumnName="param_key" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Apps_processes">
+            <EntityTypeMapping TypeName="Model.Apps_processes">
+              <MappingFragment StoreEntitySet="Apps_processes">
+                <ScalarProperty Name="sp_datasource" ColumnName="sp_datasource" />
+                <ScalarProperty Name="sp_databse__pass" ColumnName="sp_databse__pass" />
+                <ScalarProperty Name="sp_databse__user" ColumnName="sp_databse__user" />
+                <ScalarProperty Name="sp_database" ColumnName="sp_database" />
+                <ScalarProperty Name="sp_desc" ColumnName="sp_desc" />
+                <ScalarProperty Name="sp_name" ColumnName="sp_name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Apps_REF_processes">
+            <EntityTypeMapping TypeName="Model.Apps_REF_processes">
+              <MappingFragment StoreEntitySet="Apps_REF_processes">
+                <ScalarProperty Name="FK_processesId" ColumnName="FK_processesId" />
+                <ScalarProperty Name="param_dataType" ColumnName="param_dataType" />
+                <ScalarProperty Name="param_value" ColumnName="param_value" />
+                <ScalarProperty Name="param_key" ColumnName="param_key" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

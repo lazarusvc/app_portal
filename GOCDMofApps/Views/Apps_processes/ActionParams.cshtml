@@ -1,0 +1,36 @@
+﻿@{
+    ViewBag.Title = "ActionParams";
+}
+
+
+
+<div style="background: #FFFFFF; border-radius: 10px; width: 100%; padding: 20px;">
+    <h3 class="fg-gray">@Html.ActionLink("<<", null, null, null, new { href = Request.UrlReferrer }) | RUN:: Custom Processes</h3>
+    <p>running - Stored Procedure: <br /><span style="text-decoration:underline;">@ViewBag.n</span></p>
+    <br />
+    @Html.Action("IndexPartial", "Apps_REF_processes", new { n = ViewBag.n })
+
+    @using (Html.BeginForm("Action", "Apps_processes", FormMethod.Post))
+    {
+        <input type="hidden" name="n" id="n" value="@ViewBag.n" />
+        <input type="hidden" name="datasource" id="datasource" value="@ViewBag.ds" />
+        <input type="hidden" name="db" id="db" value="@ViewBag.db" />
+        <input type="hidden" name="user" id="user" value="@ViewBag.u" />
+        <input type="hidden" name="pass" id="pass" value="@ViewBag.p" />
+        <br />
+        <div id="LoadProgress">
+            <div data-role="progress" data-type="line"></div>
+            <br />
+        </div>        
+        <button type="submit" class="button yellow large" style="width: 100%;" id="BtnSubmit">Submit</button>
+    }
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#LoadProgress").hide();
+        $('#BtnSubmit').on('click', function () {
+            $("#LoadProgress").show();
+        });
+    });
+</script>

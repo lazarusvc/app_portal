@@ -1,0 +1,39 @@
+﻿@using ReportViewerForMvc;
+@{
+    ViewBag.Title = "GOCD Reports";
+}
+
+
+<div class="form-horizontal">
+    <div class="grid" style="background: #FFFFFF; border-radius: 10px; width: 100%; padding: 20px;">
+        <div class="row">
+            <div class="cell-12">
+                <div style="display: inline-flex;">
+                    <h2 class="fg-darkGray"><span class='mif-news icon'></span> Select a Report::</h2>
+                </div>
+                <hr class="bg-gray" />
+                @using (Html.BeginForm("Reports", "Home", FormMethod.Post))
+                {
+                    @Html.DropDownList("rp", null, htmlAttributes: new { data_role = "select" })
+                    <br />
+                    <input type="submit" value="Submit" id="Btn" class="button drop-shadow yellow" style="width: 100%;" />
+                }
+            </div>
+            <br />
+            <div id="iframeHidden">
+                @Html.ReportViewer(ViewBag.ReportViewer as Microsoft.Reporting.WebForms.ReportViewer)
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        var iframe = $("#iframeHidden iframe");
+        iframe.hide();
+        $("#Btn").on('click', function () {            
+            window.open(iframe.attr('src'), '_blank').focus();
+        });
+    });
+</script>
