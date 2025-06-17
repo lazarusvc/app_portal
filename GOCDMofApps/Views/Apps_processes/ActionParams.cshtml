@@ -28,6 +28,13 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
+
+        $('input').keydown(function (e) {
+            if (e.keyCode == 9) {
+                $("#btnTab").click();
+            }
+        });
+
         $("#LoadProgress").hide();
         $('#BtnSubmit').on('click', function () {
             $("#LoadProgress").show();

@@ -1,0 +1,53 @@
+﻿@model GOCDMofApps.Models.Identity
+
+@{
+    ViewBag.Title = "Edit  Identity";
+}
+
+
+@using (Html.BeginForm("Edit", "Identities", FormMethod.Post, new { enctype = "multipart/form-data" })) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">       
+        <div class="grid" style="background: #FFFFFF; border-radius: 10px; width: 100%; padding: 20px;">
+            <div class="row">
+                <div class="cell-12">
+
+                    <h2 class="fg-darkGray">@Html.ActionLink("<< Back", null, null, null, new { href = Request.UrlReferrer }) Edit:: Identity</h2>
+                    <hr class="bg-gray" />
+                    @Html.ValidationSummary(true, "", new { @class = "fg-magenta" })
+                    @Html.HiddenFor(model => model.Id)
+
+                    @Html.EditorFor(model => model.name, new { htmlAttributes = new { data_role = "input", data_prepend = "Portal Name: " } })
+                    @Html.ValidationMessageFor(model => model.name, "", new { @class = "fg-magenta" })
+
+                    @Html.EditorFor(model => model.headerColor, new { htmlAttributes = new { data_role = "input", data_prepend = "Header Colors (css): " } })
+                    @Html.ValidationMessageFor(model => model.headerColor, "", new { @class = "fg-magenta" })
+
+                    @Html.EditorFor(model => model.aboutDesc, new { htmlAttributes = new { data_role = "input", data_prepend = "About Description: " } })
+                    @Html.ValidationMessageFor(model => model.aboutDesc, "", new { @class = "fg-magenta" })
+
+                    @Html.EditorFor(model => model.contactDesc, new { htmlAttributes = new { data_role = "input", data_prepend = "Contact Description: " } })
+                    @Html.ValidationMessageFor(model => model.contactDesc, "", new { @class = "fg-magenta" })
+
+                    @Html.EditorFor(model => model.footerDesc, new { htmlAttributes = new { data_role = "input", data_prepend = "Footer: " } })
+                    @Html.ValidationMessageFor(model => model.footerDesc, "", new { @class = "fg-magenta" })
+
+                    @Html.HiddenFor(model => model.logo)
+                    @Html.ValidationMessageFor(model => model.logo, "", new { @class = "fg-magenta" })
+
+                    <br />
+                    <div class="form-group files">
+                        <img src="@Model.logo" width="100" style="margin:50px;" /><br/>
+                        <label>Upload Logo:</label><br />
+                        <input type="file" class="form-control" multiple="" name="media" id="media">
+                    </div>
+                    <input type="submit" value="Save" class="button yellow" style="width: 100%;" />
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+

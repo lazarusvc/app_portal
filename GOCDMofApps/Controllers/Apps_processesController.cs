@@ -230,9 +230,15 @@ namespace GOCDMofApps.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Apps_processes apps_processes = db.Apps_processes.Find(id);
-            db.Apps_processes.Remove(apps_processes);
-            db.SaveChanges();
+
+            db.Database.ExecuteSqlCommand(String.Format(@"
+            DELETE dbo.Apps_REF_processes 
+            WHERE FK_processesId = {0}
+
+            DELETE dbo.Apps_processes
+            WHERE Id = {0}
+            ", id));
+
             return RedirectToAction("Index");
         }
 

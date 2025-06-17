@@ -4,13 +4,13 @@
 @model IEnumerable<GOCDMofApps.Models.Apps>
 
 
-<div class="row gradientBG">
+<div class="row" style="background: @GOCDMofApps.Controllers.HomeController.global_Identity(3)">
     <div class="cell-2">
-        <img src="~/Content/Image/coa.svg" width="100" style="margin:50px;" />
+        <img src="@GOCDMofApps.Controllers.HomeController.global_Identity(2)" width="100" style="margin:50px;" />
     </div>
     <div class="cell-10">
         <div style="margin:50px;">
-            <h3 class="big-title" align="LEFT">GOCD APPlication Portal</h3>
+            <h3 class="big-title" align="LEFT">@GOCDMofApps.Controllers.HomeController.global_Identity(1) App Portal</h3>
             <p>Applications and Resource management</p>
         </div>
     </div>
@@ -19,17 +19,17 @@
 <br />
 
 <div class="row">
-    <div class="cell-lg-1" style="margin-left: 30px; position:relative;">
+    <div class="cell-lg-1" style="margin-left: 50px; position:relative;">
         <a id="app_box" data-role="tile" href="@Url.Action("Index", "Apps_processes")" data-size="medium" class="bg-black" data-cover="../Content/image/processes.png">
             <span id="app_card" class="mif-arrow-up-right branding-bar"> Custom Processes</span>
         </a>
     </div>
-    <div class="cell-lg-1" style="margin-left: 30px; position: relative;">
-        <a id="app_box" data-role="tile" href="https://apps.gov.dm/keepass/" target="_blank" data-size="medium" class="bg-black" data-cover="../Content/image/passwords.png">
+    <div class="cell-lg-1" style="margin-left: 50px; position: relative;">
+        <a id="app_box" data-role="tile" href="@Url.Action("Index", "Apps_password")" data-size="medium" class="bg-black" data-cover="../Content/image/passwords.png">
             <span id="app_card" class="mif-arrow-up-right branding-bar"> Password Manager</span>
         </a>
     </div>
-    <div class="cell-lg-1" style="margin-left: 30px; position: relative;">
+    <div class="cell-lg-1" style="margin-left: 50px; position: relative;">
         <a id="app_box" data-role="tile" href="@Url.Action("Reports", "Home")" data-size="medium" class="bg-black" data-cover="../Content/image/reports.png">
             <span id="app_card" class="mif-arrow-up-right branding-bar"> Custom Reporting</span>
         </a>

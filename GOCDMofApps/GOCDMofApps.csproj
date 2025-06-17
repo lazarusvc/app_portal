@@ -45,6 +45,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AuthenticatedEncryption, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\AuthenticatedEncryption.2.0.0\lib\net45\AuthenticatedEncryption.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -156,6 +159,7 @@
     <Compile Include="Controllers\AppsController.cs" />
     <Compile Include="Controllers\Apps_CategoryController.cs" />
     <Compile Include="Controllers\Apps_DocumentController.cs" />
+    <Compile Include="Controllers\Apps_passwordController.cs" />
     <Compile Include="Controllers\Apps_processesController.cs" />
     <Compile Include="Controllers\Apps_REF_processesController.cs" />
     <Compile Include="Controllers\Apps_reportsController.cs" />
@@ -164,6 +168,7 @@
     <Compile Include="Controllers\Apps_UsersController.cs" />
     <Compile Include="Controllers\Apps_UsersRoleController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\IdentitiesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -174,6 +179,9 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Apps_Document.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Apps_password.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Apps_processes.cs">
@@ -195,6 +203,9 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Apps_UsersRole.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Identity.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\LoginViewModel.cs" />
@@ -472,8 +483,22 @@
     <Content Include="Views\Apps_processes\ActionParams.cshtml" />
     <Content Include="Views\Shared\_processesParamsIndex.cshtml" />
     <Content Include="Views\Apps_REF_processes\CreateCombined.cshtml" />
+    <Content Include="Views\Identities\Create.cshtml" />
+    <Content Include="Views\Identities\Delete.cshtml" />
+    <Content Include="Views\Identities\Details.cshtml" />
+    <Content Include="Views\Identities\Edit.cshtml" />
+    <Content Include="Views\Identities\Index.cshtml" />
+    <Content Include="Views\Apps_password\Create.cshtml" />
+    <Content Include="Views\Apps_password\Delete.cshtml" />
+    <Content Include="Views\Apps_password\Details.cshtml" />
+    <Content Include="Views\Apps_password\Edit.cshtml" />
+    <Content Include="Views\Apps_password\Index.cshtml" />
+    <Content Include="Views\Shared\_Layout__Apps_password.cshtml" />
+    <Content Include="Views\Shared\_partial__Apps_password.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Content\Uploads\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

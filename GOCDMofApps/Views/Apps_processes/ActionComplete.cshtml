@@ -2,22 +2,22 @@
     ViewBag.Title = "ActionComplete";
 }
 
-<h2>Process Completed!</h2>
+<h1>Process Completed!</h1>
 <hr/>
-<p>Results:</p>
 <p class="fg-red">@ViewData["Error"]</p>
 <br/>
-<table data-role="table">
+<h3 class="fg-gray">Results:</h3>
+<table class="table">
     <thead>
         <tr>
-            <th>@ViewData["spCol"]</th>            
+            <th class="fg-green">@ViewData["spCol"]</th>            
         </tr>
     </thead>
-    <tbody>
+    <tbody class="fg-white bg-green">
         <tr>
             <td>@ViewData["spRow"]</td>
         </tr>        
     </tbody>
 </table>
-
+<br />
 

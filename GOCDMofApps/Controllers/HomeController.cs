@@ -16,8 +16,47 @@ namespace GOCDMofApps.Controllers
     {
 
         // HOME PAGE
-        // ==========================================================================================================
+        // =========
         ModelContainer db = new ModelContainer();
+
+        public static String global_Identity(int? id)
+        {
+            ModelContainer db = new ModelContainer();
+            string results = "";
+            try
+            {
+                switch (id)
+                {
+                    case 1: // ---------------------------------------------------------------- arg:1 - Name
+                        results = db.Identities.Select(x => x.name).FirstOrDefault();
+                        break;
+                    case 2: // ---------------------------------------------------------------- arg2: - Logo
+                        results = db.Identities.Select(x => x.logo).FirstOrDefault();
+                        break;
+                    case 3: // ---------------------------------------------------------------- arg3: - HeaderColor
+                        results = db.Identities.Select(x => x.headerColor).FirstOrDefault();
+                        break;
+                    case 4: // ---------------------------------------------------------------- arg4: - FooterDesc
+                        results = db.Identities.Select(x => x.footerDesc).FirstOrDefault();
+                        break;
+                    case 5: // ---------------------------------------------------------------- arg5: - AboutDesc
+                        results = db.Identities.Select(x => x.aboutDesc).FirstOrDefault();
+                        break;
+                    case 6: // ---------------------------------------------------------------- arg6: - ContactDesc
+                        results = db.Identities.Select(x => x.contactDesc).FirstOrDefault();
+                        break;
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Error:" + e);
+                results = "Error:" + e;
+            }
+
+
+            return results;
+        }
+
         public ActionResult Index()
         {
             ViewBag.search = new SelectList((from s in db.vw_search.SqlQuery("select * from vw_search").ToList()
@@ -49,7 +88,7 @@ namespace GOCDMofApps.Controllers
         }
 
         // REPORTS PAGE
-        // ==========================================================================================================
+        // ============
         [CustomAuthorize(Roles = "admin-issu, report-user")]
         [HttpGet]
         public ActionResult Reports()

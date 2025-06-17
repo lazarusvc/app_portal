@@ -21,6 +21,7 @@ namespace GOCDMofApps.Models
             this.Apps_Document = new HashSet<Apps_Document>();
             this.Apps = new HashSet<Apps>();
             this.Apps_reports = new HashSet<Apps_reports>();
+            this.Apps_password = new HashSet<Apps_password>();
         }
     
         public int Id { get; set; }
@@ -34,5 +35,7 @@ namespace GOCDMofApps.Models
         public virtual ICollection<Apps> Apps { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Apps_reports> Apps_reports { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Apps_password> Apps_password { get; set; }
     }
 }

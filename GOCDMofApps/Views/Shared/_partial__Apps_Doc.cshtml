@@ -155,7 +155,7 @@
                         </div>
                     </div>
                 }
-                @*else if (item.Apps_UsersRole.name == "public")
+                else if (item.Apps_UsersRole.name == "public")
                 {
                     <div class="cell-3" id="@Html.DisplayFor(modelItem => item.tags).ToString().Replace("#","")">
                         <div class="card image-header">
@@ -172,18 +172,85 @@
                             </div>
                         </div>
                     </div>
-                }*@
+                }
                 else
                 {
-                    <div class="card-header fg-white" style='background-image: url(@Url.Content("~/Content/Image/document-placeholder.png)")'>
-                        <span style="color: #000000;font-weight: 500;box-shadow: 0px 0px 0px 4px rgba(0, 0, 0, 0.4);background: white;padding: 5px;">...</span>
-                    </div>
-                    <div class="card-content p-2">
-                        <p class="fg-gray">ID: 0</p>
-                        <p>...</p>
-                    </div>
-                    <div class="card-footer">
-                        <a href="#" class="button default"><span class="mif-arrow-up-right icon"></span> Login in to Access</a>
+                    <div class="cell-3" id="@Html.DisplayFor(modelItem => item.tags).ToString().Replace("#","")">
+                        <div class="card image-header">
+                            @if (item.tags.ToString().Replace("#", "").Contains("manuals"))
+                            {
+                                <div class="card-header fg-white" style='background-image: url(@Url.Content("~/Content/Image/document-placeholder.png)")'>
+                                    <span style="color: #000000;font-weight: 500;box-shadow: 0px 0px 0px 4px rgba(0, 0, 0, 0.4);background: white;padding: 5px;">
+                                        @Html.DisplayFor(modelItem => item.name)
+                                    </span>
+                                </div>
+                                <div class="card-content p-2">
+                                    <p class="fg-gray">ID: 0</p>
+                                    <p>...</p>
+                                </div>
+                                <div class="card-footer">
+                                    <a href="#" class="button default"><span class="mif-arrow-up-right icon"></span> Login in to Access</a>
+                                </div>
+                            }
+                            else if (item.tags.ToString().Replace("#", "").Contains("scripts"))
+                            {
+                                <div class="card-header fg-white" style='background-image: url(@Url.Content("~/Content/Image/document-placeholder.png)")'>
+                                    <span style="color: #000000;font-weight: 500;box-shadow: 0px 0px 0px 4px rgba(0, 0, 0, 0.4);background: white;padding: 5px;">
+                                        @Html.DisplayFor(modelItem => item.name)
+                                    </span>
+                                </div>
+                                <div class="card-content p-2">
+                                    <p class="fg-gray">ID: 0</p>
+                                    <p>...</p>
+                                </div>
+                                <div class="card-footer">
+                                    <a href="#" class="button default"><span class="mif-arrow-up-right icon"></span> Login in to Access</a>
+                                </div>
+                            }
+                            else if (item.tags.ToString().Replace("#", "").Contains("visuals"))
+                            {
+                                <div class="card-header fg-white" style='background-image: url(@Url.Content("~/Content/Image/document-placeholder.png)")'>
+                                    <span style="color: #000000;font-weight: 500;box-shadow: 0px 0px 0px 4px rgba(0, 0, 0, 0.4);background: white;padding: 5px;">
+                                        @Html.DisplayFor(modelItem => item.name)
+                                    </span>
+                                </div>
+                                <div class="card-content p-2">
+                                    <p class="fg-gray">ID: 0</p>
+                                    <p>...</p>
+                                </div>
+                                <div class="card-footer">
+                                    <a href="#" class="button default"><span class="mif-arrow-up-right icon"></span> Login in to Access</a>
+                                </div>
+                            }
+                            else if (item.tags.ToString().Replace("#", "").Contains("tuts"))
+                            {
+                            <div class="card-header fg-white" style='background-image: url(@Url.Content("~/Content/Image/document-placeholder.png)")'>
+                                <span style="color: #000000;font-weight: 500;box-shadow: 0px 0px 0px 4px rgba(0, 0, 0, 0.4);background: white;padding: 5px;">
+                                    @Html.DisplayFor(modelItem => item.name)
+                                </span>
+                            </div>
+                                <div class="card-content p-2">
+                                    <p class="fg-gray">ID: 0</p>
+                                    <p>...</p>
+                                </div>
+                                <div class="card-footer">
+                                    <a href="#" class="button default"><span class="mif-arrow-up-right icon"></span> Login in to Access</a>
+                                </div>
+                            }
+                            else if (item.tags.ToString().Replace("#", "").Contains("how_to"))
+                            {
+                                <div class="card-header fg-white" style='background-image: url(@Url.Content("~/Content/Image/document-placeholder.png)")'>
+                                    <span style="color: #000000;font-weight: 500;box-shadow: 0px 0px 0px 4px rgba(0, 0, 0, 0.4);background: white;padding: 5px;">...</span>
+                                </div>
+                                <div class="card-content p-2">
+                                    <p class="fg-gray">ID: 0</p>
+                                    <p>...</p>
+                                </div>
+                                <div class="card-footer">
+                                    <a href="#" class="button default"><span class="mif-arrow-up-right icon"></span> Login in to Access</a>
+                                </div>
+                            }
+                        </div>
                     </div>
                 }
             }

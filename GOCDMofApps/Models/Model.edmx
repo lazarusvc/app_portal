@@ -40,6 +40,20 @@
           <Property Name="Apps_UsersRoleId" Type="int" Nullable="false" />
           <Property Name="tags" Type="nvarchar(max)" />
         </EntityType>
+        <EntityType Name="Apps_password">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="username" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="password" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="title" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="notes" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="tags" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Apps_UsersRoleId" Type="int" Nullable="false" />
+          <Property Name="crypt" Type="nvarchar(max)" />
+          <Property Name="auth" Type="nvarchar(max)" />
+        </EntityType>
         <EntityType Name="Apps_processes">
           <Key>
             <PropertyRef Name="Id" />
@@ -105,6 +119,18 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="name" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Identities">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="logo" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="headerColor" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="aboutDesc" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="contactDesc" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="footerDesc" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'GOCDMoFApps.dbo.vw_search' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -200,6 +226,18 @@ warning 6002: The table/view 'GOCDMoFApps.dbo.vw_search' does not have a primary
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Apps_UsersRoleApps_password">
+          <End Role="Apps_UsersRole" Type="Self.Apps_UsersRole" Multiplicity="1" />
+          <End Role="Apps_password" Type="Self.Apps_password" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Apps_UsersRole">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Apps_password">
+              <PropertyRef Name="Apps_UsersRoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Apps_UsersRoleApps_Users">
           <End Role="Apps_UsersRole" Type="Self.Apps_UsersRole" Multiplicity="1" />
           <End Role="Apps_Users" Type="Self.Apps_Users" Multiplicity="*" />
@@ -216,6 +254,7 @@ warning 6002: The table/view 'GOCDMoFApps.dbo.vw_search' does not have a primary
           <EntitySet Name="Apps" EntityType="Self.Apps" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Apps_Category" EntityType="Self.Apps_Category" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Apps_Document" EntityType="Self.Apps_Document" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Apps_password" EntityType="Self.Apps_password" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Apps_processes" EntityType="Self.Apps_processes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Apps_REF_processes" EntityType="Self.Apps_REF_processes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Apps_reports" EntityType="Self.Apps_reports" Schema="dbo" store:Type="Tables" />
@@ -223,6 +262,7 @@ warning 6002: The table/view 'GOCDMoFApps.dbo.vw_search' does not have a primary
           <EntitySet Name="Apps_Type" EntityType="Self.Apps_Type" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Apps_Users" EntityType="Self.Apps_Users" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Apps_UsersRole" EntityType="Self.Apps_UsersRole" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Identities" EntityType="Self.Identities" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="vw_search" EntityType="Self.vw_search" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [vw_search].[Id] AS [Id], 
@@ -257,6 +297,10 @@ warning 6002: The table/view 'GOCDMoFApps.dbo.vw_search' does not have a primary
           <AssociationSet Name="FK_Apps_UsersRoleApps_Document" Association="Self.FK_Apps_UsersRoleApps_Document">
             <End Role="Apps_UsersRole" EntitySet="Apps_UsersRole" />
             <End Role="Apps_Document" EntitySet="Apps_Document" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Apps_UsersRoleApps_password" Association="Self.FK_Apps_UsersRoleApps_password">
+            <End Role="Apps_UsersRole" EntitySet="Apps_UsersRole" />
+            <End Role="Apps_password" EntitySet="Apps_password" />
           </AssociationSet>
           <AssociationSet Name="FK_Apps_UsersRoleApps_Users" Association="Self.FK_Apps_UsersRoleApps_Users">
             <End Role="Apps_UsersRole" EntitySet="Apps_UsersRole" />
@@ -310,6 +354,12 @@ warning 6002: The table/view 'GOCDMoFApps.dbo.vw_search' does not have a primary
           <AssociationSet Name="FK_Apps_processesApps_REF_processes" Association="Model.FK_Apps_processesApps_REF_processes">
             <End Role="Apps_processes" EntitySet="Apps_processes" />
             <End Role="Apps_REF_processes" EntitySet="Apps_REF_processes" />
+          </AssociationSet>
+          <EntitySet Name="Identities" EntityType="Model.Identity" />
+          <EntitySet Name="Apps_password" EntityType="Model.Apps_password" />
+          <AssociationSet Name="FK_Apps_UsersRoleApps_password" Association="Model.FK_Apps_UsersRoleApps_password">
+            <End Role="Apps_UsersRole" EntitySet="Apps_UsersRole" />
+            <End Role="Apps_password" EntitySet="Apps_password" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Apps">
@@ -405,6 +455,7 @@ warning 6002: The table/view 'GOCDMoFApps.dbo.vw_search' does not have a primary
           <NavigationProperty Name="Apps_Document" Relationship="Model.Apps_UsersRoleApps_Document" FromRole="Apps_UsersRole" ToRole="Apps_Document" />
           <NavigationProperty Name="Apps" Relationship="Model.Apps_UsersRoleApps" FromRole="Apps_UsersRole" ToRole="Apps" />
           <NavigationProperty Name="Apps_reports" Relationship="Model.FK_Apps_userRolesApps_reports" FromRole="Apps_UsersRole" ToRole="Apps_reports" />
+          <NavigationProperty Name="Apps_password" Relationship="Model.FK_Apps_UsersRoleApps_password" FromRole="Apps_UsersRole" ToRole="Apps_password" />
         </EntityType>
         <Association Name="Apps_UsersRoleApps_Users">
           <End Type="Model.Apps_UsersRole" Role="Apps_UsersRole" Multiplicity="1" />
@@ -533,6 +584,45 @@ warning 6002: The table/view 'GOCDMoFApps.dbo.vw_search' does not have a primary
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Identity">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="logo" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="headerColor" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="aboutDesc" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="contactDesc" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="footerDesc" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Apps_password">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="username" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="title" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="notes" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="tags" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Apps_UsersRoleId" Type="Int32" Nullable="false" />
+          <Property Name="crypt" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="auth" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Apps_UsersRole" Relationship="Model.FK_Apps_UsersRoleApps_password" FromRole="Apps_password" ToRole="Apps_UsersRole" />
+        </EntityType>
+        <Association Name="FK_Apps_UsersRoleApps_password">
+          <End Type="Model.Apps_UsersRole" Role="Apps_UsersRole" Multiplicity="1" />
+          <End Type="Model.Apps_password" Role="Apps_password" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Apps_UsersRole">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Apps_password">
+              <PropertyRef Name="Apps_UsersRoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -655,6 +745,34 @@ warning 6002: The table/view 'GOCDMoFApps.dbo.vw_search' does not have a primary
                 <ScalarProperty Name="param_dataType" ColumnName="param_dataType" />
                 <ScalarProperty Name="param_value" ColumnName="param_value" />
                 <ScalarProperty Name="param_key" ColumnName="param_key" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Identities">
+            <EntityTypeMapping TypeName="Model.Identity">
+              <MappingFragment StoreEntitySet="Identities">
+                <ScalarProperty Name="footerDesc" ColumnName="footerDesc" />
+                <ScalarProperty Name="contactDesc" ColumnName="contactDesc" />
+                <ScalarProperty Name="aboutDesc" ColumnName="aboutDesc" />
+                <ScalarProperty Name="headerColor" ColumnName="headerColor" />
+                <ScalarProperty Name="logo" ColumnName="logo" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Apps_password">
+            <EntityTypeMapping TypeName="Model.Apps_password">
+              <MappingFragment StoreEntitySet="Apps_password">
+                <ScalarProperty Name="auth" ColumnName="auth" />
+                <ScalarProperty Name="crypt" ColumnName="crypt" />
+                <ScalarProperty Name="Apps_UsersRoleId" ColumnName="Apps_UsersRoleId" />
+                <ScalarProperty Name="tags" ColumnName="tags" />
+                <ScalarProperty Name="notes" ColumnName="notes" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="username" ColumnName="username" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
