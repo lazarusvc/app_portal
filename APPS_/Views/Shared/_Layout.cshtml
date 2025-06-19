@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - @Apps_.Controllers.HomeController.global_Identity(1) Apps Portal</title>
+    @Styles.Render("~/Content/metro")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Tokyo+Zoo&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    @if (Request.IsAuthenticated)
+    {
+        @Html.Partial("~/Views/Shared/_SessionTimeout.cshtml")
+    }
+
+    <div data-role="appbar" data-expand-point="md">
+        <a href="@Url.Action("Index","Home")" class="brand no-hover">
+            <span class="mif-apps mif-3x" style="margin-right:10px;"></span> Apps
+        </a>
+        <ul class="app-bar-menu">
+            <li>@Html.ActionLink("About", "About", "Home")</li>
+            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+            <li>|</li>
+            <li>@Html.ActionLink("Login", "Login", "Account")</li>
+            @if (Request.IsAuthenticated)
+            {
+                <li class="group-title"><span class="mif-user"></span> signed in as - @User.Identity.Name!</li>
+                <li>@Html.ActionLink("Sign Out", "LogOff", "Account")</li>
+            }
+        </ul>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="cell-lg-2" style="background: #f8f8f8; max-height: 100%;">
+                <ul class="sidebar-menu" style="margin-top: 50px">
+                    @if (Request.IsAuthenticated && Roles.IsUserInRole("admin-issu") || Roles.IsUserInRole("admin-ict"))
+                    {
+                        <li class="divider"></li>
+                        <li class="group-title"><span class="mif-cog"></span> Settings</li>
+                        <li>@Html.ActionLink("Identity", "Index", "Identities")</li>
+                        <li>@Html.ActionLink("Apps", "Index", "Apps")</li>
+                        <li>@Html.ActionLink("Apps Type", "Index", "Apps_Type")</li>
+                        <li>@Html.ActionLink("Apps Category", "Index", "Apps_Category")</li>
+                        <li>@Html.ActionLink("Document", "Index", "Apps_Document")</li>
+                        <li>@Html.ActionLink("Users", "Index", "Apps_Users")</li>
+                        <li>@Html.ActionLink("User Roles", "Index", "Apps_UsersRole")</li>
+                        <li>@Html.ActionLink("Reports", "Index", "Apps_reports")</li>
+                        <li>@Html.ActionLink("Reports Parameter", "Index", "Apps_reports_params")</li>
+                        <li>@Html.ActionLink("Processes Parameter", "Index", "Apps_REF_processes")</li>
+                    }
+                </ul>
+            </div>
+            <div class="cell-lg-10">
+                <br />
+                <br />
+                @RenderBody()
+                <hr />
+                <footer>
+                    <p>&copy; @DateTime.Now.Year - @Apps_.Controllers.HomeController.global_Identity(4)</p>
+                </footer>
+            </div>
+        </div>
+    </div>
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/metro")
+    @RenderSection("scripts", required: false)
+
+</body>
+</html>

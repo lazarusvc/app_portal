@@ -1,0 +1,98 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+@model IEnumerable<Apps_.Models.Apps>
+
+
+<div class="row" style="background: @Apps_.Controllers.HomeController.global_Identity(3)">
+    <div class="cell-2">
+        <img src="@Apps_.Controllers.HomeController.global_Identity(2)" width="100" style="margin:50px;" />
+    </div>
+    <div class="cell-10">
+        <div style="margin:50px;">
+            <h3 class="big-title" align="LEFT">@Apps_.Controllers.HomeController.global_Identity(1) App Portal</h3>
+            <p>Applications and Resource management</p>
+        </div>
+    </div>
+</div>
+@Html.DropDownList("search", null, "&#x1F50E;&#xFE0E; Search ...", htmlAttributes: new { data_role = "select", data_search_button = "true" })
+<br />
+
+<div class="row">
+    <div class="cell-lg-1" style="margin-left: 50px; position:relative;">
+        <a id="app_box" data-role="tile" href="@Url.Action("Index", "Apps_processes")" data-size="medium" class="bg-black" data-cover="../Content/image/processes.png">
+            <span id="app_card" class="mif-arrow-up-right branding-bar"> Custom Processes</span>
+        </a>
+    </div>
+    <div class="cell-lg-1" style="margin-left: 50px; position: relative;">
+        <a id="app_box" data-role="tile" href="@Url.Action("Index", "Apps_password")" data-size="medium" class="bg-black" data-cover="../Content/image/passwords.png">
+            <span id="app_card" class="mif-arrow-up-right branding-bar"> Password Manager</span>
+        </a>
+    </div>
+    <div class="cell-lg-1" style="margin-left: 50px; position: relative;">
+        <a id="app_box" data-role="tile" href="@Url.Action("Reports", "Home")" data-size="medium" class="bg-black" data-cover="../Content/image/reports.png">
+            <span id="app_card" class="mif-arrow-up-right branding-bar"> Custom Reporting</span>
+        </a>
+    </div>
+</div><br /><hr />
+
+
+<ul data-app-bar="true" data-role="materialtabs" data-fixed-tabs="true" id="category">
+    @foreach (var item in Model.Select(x => x.Apps_Category.name).Distinct())
+    {
+        <li>
+            <a href="#@Html.DisplayFor(modelItem => item)">@Html.DisplayFor(modelItem => item)</a>
+        </li>
+    }
+</ul>
+<div style="margin-top: 112px" id="catItems">
+    <div class="grid">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                if (Request.IsAuthenticated && Roles.IsUserInRole("admin-issu") || Roles.IsUserInRole("admin-ict"))
+                {
+                    <div id="@Html.DisplayFor(modelItem => item.Apps_Category.name)">
+                        <div class="cell-2">
+                            <a id="app_box" data-role="tile" href="@Html.DisplayFor(modelItem => item.url)" target="_blank" data-size="medium" class="bg-black" data-cover="@Html.DisplayFor(modelItem => item.image)">
+                                <span id="app_card" class="mif-arrow-up-right branding-bar"> @Html.DisplayFor(modelItem => item.name)</span>
+                            </a>
+                        </div>
+                    </div>
+                }
+                else if (item.Apps_UsersRole.name == "public")
+                {
+                    <div id="@Html.DisplayFor(modelItem => item.Apps_Category.name)">
+                        <div class="cell-2">
+                            <a id="app_box" data-role="tile" href="@Html.DisplayFor(modelItem => item.url)" target="_blank" data-size="medium" class="bg-black" data-cover="@Html.DisplayFor(modelItem => item.image)">
+                                <span id="app_card" class="mif-arrow-up-right branding-bar"> @Html.DisplayFor(modelItem => item.name)</span>
+                            </a>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div id="@Html.DisplayFor(modelItem => item.Apps_Category.name)">
+                        <div class="cell-2">
+                            <a id="app_box" data-role="tile" href="#" data-size="medium" class="bg-black" data-cover="/Content/image/app-placeholder.png">
+                                <span id="app_card" class="mif-arrow-up-right branding-bar"> ...</span>
+                            </a>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</div>
+@Html.Action("PartialDocs", "Home")
+
+
+@Scripts.Render("~/bundles/jquery")
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#search').on('change', function () {
+            // window.location = this.value;
+            window.open(this.value, '_blank');
+        });
+    });
+</script>

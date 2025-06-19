@@ -1,0 +1,43 @@
+﻿@model Apps_.Models.Apps_REF_processes
+
+@{
+    ViewBag.Title = "Create  Apps_REF_processes";
+}
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">       
+        <div class="grid" style="background: #FFFFFF; border-radius: 10px; width: 100%; padding: 20px;">
+            <div class="row">
+                <div class="cell-12">
+
+                    <h2 class="fg-darkGray">@Html.ActionLink("<< Back", null, null, null, new { href = Request.UrlReferrer }) Create new:: Apps_REF_processes</h2>
+                    @Html.ValidationSummary(true, "", new { @class = "fg-magenta" })
+                    @Html.EditorFor(model => model.param_key, new { htmlAttributes = new { data_role = "input", data_prepend = "Parameter Keys: ", placeholder = "e.g. @key" } })
+                    @Html.ValidationMessageFor(model => model.param_key, "", new { @class = "fg-magenta" })
+
+                    @Html.EditorFor(model => model.param_value, new { htmlAttributes = new { data_role = "input", data_prepend = "Parameter Value: ", @Value = "NULL" } })
+                    @Html.ValidationMessageFor(model => model.param_value, "", new { @class = "fg-magenta" })
+                    <br />
+                    <label>Data Type:</label>
+                    @Html.DropDownListFor(model => model.param_dataType, new List<SelectListItem>
+                        {
+                            new SelectListItem() { Text = "Int", Value = "Int" },
+                            new SelectListItem() { Text = "Float", Value = "Float" },
+                            new SelectListItem() { Text = "Text", Value = "Text" }
+                        }, null, htmlAttributes: new { data_role = "select" })
+                    @Html.ValidationMessageFor(model => model.param_dataType, "", new { @class = "fg-magenta" })
+                    <br />
+                    <label>Stored Procedure:</label>
+                    @Html.DropDownList("FK_processesId", null, htmlAttributes: new { data_role = "select" })
+                    @Html.ValidationMessageFor(model => model.FK_processesId, "", new { @class = "fg-magenta" })
+                    <br/>
+                    <input type="submit" value="Save" class="button yellow" style="width: 100%;" />
+                </div>
+            </div>
+        </div>
+    </div>
+}
+

@@ -1,0 +1,68 @@
+﻿@model Apps_.Models.Apps_password
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="grid" style="background: #FFFFFF; border-radius: 10px; width: 100%; padding: 20px;">
+    <h2 class="fg-darkGray">@Html.ActionLink("<<", null, null, null, new { href = Request.UrlReferrer }) | Details:: Apps_password</h2>
+    <hr class="bg-gray" />
+
+    <table class="table subcompact">
+        <thead>
+            <tr>
+                <th>Username</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@Html.DisplayFor(model => model.username)</td>
+            </tr>
+        </tbody>
+        <thead>
+            <tr>
+                <th>Title</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>@Html.DisplayFor(model => model.title)</td>
+            </tr>
+        </tbody>
+        <thead>
+            <tr>
+                <th>Notes</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>@Html.DisplayFor(model => model.notes)</td>
+            </tr>
+        </tbody>
+        <thead>
+            <tr>
+                <th>Tags</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@Html.DisplayFor(model => model.tags)</td>
+            </tr>
+        </tbody>
+        <thead>
+            <tr>
+                <th>Role</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@Html.DisplayFor(model => model.Apps_UsersRole.name)</td>
+            </tr>
+        </tbody>
+    </table>
+    <br/>
+    <a href="@Url.Action("Edit", new { id = Model.Id })" class="button info large" style="width: 100%;">Edit</a>
+
+</div>

@@ -1,0 +1,142 @@
+﻿@model IEnumerable<Apps_.Models.Apps_Document>
+
+    @{
+        ViewBag.Title = "Index";
+    }
+
+    <hr />
+    <ul data-app-bar="true" data-role="materialtabs" data-fixed-tabs="true">
+        @foreach (var item0 in Model.Select(x => x.tags).Distinct())
+        {
+        if (Request.IsAuthenticated && Roles.IsUserInRole("admin-issu") || Roles.IsUserInRole("admin-ict"))
+        {
+        <li>
+            <a href="@Html.DisplayFor(modelItem => item0)">@Html.DisplayFor(modelItem => item0)</a>
+        </li>
+        }
+        else
+        {
+        foreach (var item2 in Model.Select(x => x.Apps_UsersRole).Distinct())
+        {
+        if (item2.name == "public")
+        {
+        <li>
+            <a href="@Html.DisplayFor(modelItem => item0)">@Html.DisplayFor(modelItem => item0)</a>
+        </li>
+        }
+        }
+        }
+        }
+    </ul>
+    <div style="margin-top: 50px">
+        <div class="grid">
+            <div class="row">
+                @foreach (var item in Model)
+                {
+                if (Request.IsAuthenticated && Roles.IsUserInRole("admin-issu") || Roles.IsUserInRole("admin-ict"))
+                {
+                <div class="cell-3" id="@Html.DisplayFor(modelItem => item.tags)">
+                    <div class="card image-header">
+                        @if (item.tags.Contains("Manuals"))
+                        {
+                        <div class="card-header fg-white" style='background-image: url(@Url.Content("~/Content/Image/document.jpg)")'>
+                            <span style="color: #000000;font-weight: 500;box-shadow: 0px 0px 0px 4px rgba(0, 0, 0, 0.4);background: white;padding: 5px;">@Html.DisplayFor(modelItem => item.name)</span>
+                        </div>
+                        <div class="card-content p-2">
+                            <p class="fg-gray">ID: @Html.DisplayFor(modelItem => item.Id)</p>
+                            <p>@Html.DisplayFor(modelItem => item.desc)</p>
+                        </div>
+                        <div class="card-footer">
+                            <a href="@Url.Action(" Details", "Apps_Document" , new { id=item.Id })" class="button default"><span class="mif-arrow-up-right icon"></span> Access</a>
+                        </div>
+                        }
+                        else if (item.tags.Contains("Scripts"))
+                        {
+                        <div class="card-header fg-white" style='background-image: url(@Url.Content("~/Content/Image/script.jpg)")'>
+                            <span style="color: #000000;font-weight: 500;box-shadow: 0px 0px 0px 4px rgba(0, 0, 0, 0.4);background: white;padding: 5px;">@Html.DisplayFor(modelItem => item.name)</span>
+                        </div>
+                        <div class="card-content p-2">
+                            <p class="fg-gray">ID: @Html.DisplayFor(modelItem => item.Id)</p>
+                            <p>@Html.DisplayFor(modelItem => item.desc)</p>
+                        </div>
+                        <div class="card-footer">
+                            <a href="@Url.Action(" Details", "Apps_Document" , new { id=item.Id })" class="button default"><span class="mif-arrow-up-right icon"></span> Access</a>
+                        </div>
+                        }
+                        else if (item.tags.Contains("Visual"))
+                        {
+                        <div class="card-header fg-white" style='background-image: url(@Url.Content("~/Content/Image/visual.png)")'>
+                            <span style="color: #000000;font-weight: 500;box-shadow: 0px 0px 0px 4px rgba(0, 0, 0, 0.4);background: white;padding: 5px;">@Html.DisplayFor(modelItem => item.name)</span>
+                        </div>
+                        <div class="card-content p-2">
+                            <p class="fg-gray">ID: @Html.DisplayFor(modelItem => item.Id)</p>
+                            <p>@Html.DisplayFor(modelItem => item.desc)</p>
+                        </div>
+                        <div class="card-footer">
+                            <a href="@Url.Action(" Details", "Apps_Document" , new { id=item.Id })" class="button default"><span class="mif-arrow-up-right icon"></span> Access</a>
+                        </div>
+                        }
+                        else if (item.tags.Contains("Tutorials"))
+                        {
+                        <div class="card-header fg-white" style='background-image: url(@Url.Content("~/Content/Image/tutorials.png)")'>
+                            <span style="color: #000000;font-weight: 500;box-shadow: 0px 0px 0px 4px rgba(0, 0, 0, 0.4);background: white;padding: 5px;">@Html.DisplayFor(modelItem => item.name)</span>
+                        </div>
+                        <div class="card-content p-2">
+                            <p class="fg-gray">ID: @Html.DisplayFor(modelItem => item.Id)</p>
+                            <p>@Html.DisplayFor(modelItem => item.desc)</p>
+                        </div>
+                        <div class="card-footer">
+                            <a href="@Url.Action(" Details", "Apps_Document" , new { id=item.Id })" class="button default"><span class="mif-arrow-up-right icon"></span> Access</a>
+                        </div>
+                        }
+                        else if (item.tags.Contains("How To"))
+                        {
+                        <div class="card-header fg-white" style='background-image: url(@Url.Content("~/Content/Image/how-to.jpg)")'>
+                            <span style="color: #000000;font-weight: 500;box-shadow: 0px 0px 0px 4px rgba(0, 0, 0, 0.4);background: white;padding: 5px;">@Html.DisplayFor(modelItem => item.name)</span>
+                        </div>
+                        <div class="card-content p-2">
+                            <p class="fg-gray">ID: @Html.DisplayFor(modelItem => item.Id)</p>
+                            <p>@Html.DisplayFor(modelItem => item.desc)</p>
+                        </div>
+                        <div class="card-footer">
+                            <a href="@Url.Action(" Details", "Apps_Document" , new { id=item.Id })" class="button default"><span class="mif-arrow-up-right icon"></span> Access</a>
+                        </div>
+                        }
+                        else
+                        {
+                        <div class="card-header fg-white" style='background-image: url(@Url.Content("~/Content/Image/document-placeholder.png)")'>
+                            <span style="color: #000000;font-weight: 500;box-shadow: 0px 0px 0px 4px rgba(0, 0, 0, 0.4);background: white;padding: 5px;">...</span>
+                        </div>
+                        <div class="card-content p-2">
+                            <p class="fg-gray">ID: 0</p>
+                            <p>...</p>
+                        </div>
+                        <div class="card-footer">
+                            <a href="#" class="button default"><span class="mif-arrow-up-right icon"></span> Login in to Access</a>
+                        </div>
+                        }
+                    </div>
+                </div>
+                }
+                else if (item.Apps_UsersRole.name == "public")
+                {
+                <div class="cell-3" id="@Html.DisplayFor(modelItem => item.tags)">
+                    <div class="card image-header">
+                        <div class="card-header fg-white"
+                             style='background-image: url(@Url.Content("~/Content/Image/document.jpg)")'>
+                            <span style="color: #000000;font-weight: 500;box-shadow: 0px 0px 0px 4px rgba(0, 0, 0, 0.4);background: white;padding: 5px;">@Html.DisplayFor(modelItem => item.name)</span>
+                        </div>
+                        <div class="card-content p-2">
+                            <p class="fg-gray">ID: @Html.DisplayFor(modelItem => item.Id)</p>
+                            <p>@Html.DisplayFor(modelItem => item.desc)</p>
+                        </div>
+                        <div class="card-footer">
+                            <a href="@Url.Action(" Details", "Apps_Document" , new { id=item.Id })" class="button default"><span class="mif-arrow-up-right icon"></span> Access</a>
+                        </div>
+                    </div>
+                </div>
+                }
+                }
+            </div>
+        </div>
+    </div>
