@@ -8,7 +8,7 @@
     <ul data-app-bar="true" data-role="materialtabs" data-fixed-tabs="true">
         @foreach (var item0 in Model.Select(x => x.tags).Distinct())
         {
-        if (Request.IsAuthenticated && Roles.IsUserInRole("admin-issu") || Roles.IsUserInRole("admin-ict"))
+        if (Request.IsAuthenticated && Roles.IsUserInRole("admin"))
         {
         <li>
             <a href="@Html.DisplayFor(modelItem => item0)">@Html.DisplayFor(modelItem => item0)</a>
@@ -33,7 +33,7 @@
             <div class="row">
                 @foreach (var item in Model)
                 {
-                if (Request.IsAuthenticated && Roles.IsUserInRole("admin-issu") || Roles.IsUserInRole("admin-ict"))
+                if (Request.IsAuthenticated && Roles.IsUserInRole("admin"))
                 {
                 <div class="cell-3" id="@Html.DisplayFor(modelItem => item.tags)">
                     <div class="card image-header">
