@@ -17,18 +17,16 @@ namespace Apps_.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Apps_UsersRole()
         {
-            this.Apps_Users = new HashSet<Apps_Users>();
             this.Apps_Document = new HashSet<Apps_Document>();
             this.Apps = new HashSet<Apps>();
             this.Apps_reports = new HashSet<Apps_reports>();
             this.Apps_password = new HashSet<Apps_password>();
+            this.Apps_Users = new HashSet<Apps_Users>();
         }
     
         public int Id { get; set; }
         public string name { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Apps_Users> Apps_Users { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Apps_Document> Apps_Document { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -37,5 +35,7 @@ namespace Apps_.Models
         public virtual ICollection<Apps_reports> Apps_reports { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Apps_password> Apps_password { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Apps_Users> Apps_Users { get; set; }
     }
 }

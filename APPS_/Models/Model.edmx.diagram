@@ -4,36 +4,32 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="993b685d81db40bb8eea21e97499d199" Name="Diagram1" ZoomLevel="71" >
+      <Diagram DiagramId="993b685d81db40bb8eea21e97499d199" Name="Diagram1" ZoomLevel="94" >
         <EntityTypeShape EntityType="Model.Apps" Width="2.75" PointX="0.875" PointY="0.625" />
-        <EntityTypeShape EntityType="Model.Apps_Category" Width="2.125" PointX="3.625" PointY="7.375" />
-        <AssociationConnector Association="Model.Apps_CategoryApps" ManuallyRouted="true" >
-          <ConnectorPoint PointX="5.75" PointY="8.14606771826744" />
-          <ConnectorPoint PointX="6.2081376232485805" PointY="8.14606771826744" />
-          <ConnectorPoint PointX="6.2081376232485805" PointY="4.2780295701821638" />
-          <ConnectorPoint PointX="2.812502" PointY="4.2780295701821638" />
-          <ConnectorPoint PointX="2.812502" PointY="4.1842795701821638" />
+        <EntityTypeShape EntityType="Model.Apps_Category" Width="2.125" PointX="3.375" PointY="5.625" />
+        <AssociationConnector Association="Model.Apps_CategoryApps" ManuallyRouted="false" >
         </AssociationConnector>
         <EntityTypeShape EntityType="Model.Apps_Type" Width="2.125" PointX="0.875" PointY="5.625" />
         <AssociationConnector Association="Model.Apps_TypeApps" />
-        <EntityTypeShape EntityType="Model.Apps_Users" Width="2.25" PointX="3.875" PointY="0.625" />
-        <EntityTypeShape EntityType="Model.Apps_Document" Width="2.25" PointX="7.25" PointY="3.5" />
-        <EntityTypeShape EntityType="Model.Apps_UsersRole" Width="2.125" PointX="6.375" PointY="0.625" />
-        <AssociationConnector Association="Model.Apps_UsersRoleApps_Users" />
+        <EntityTypeShape EntityType="Model.Apps_Document" Width="2.25" PointX="7.25" PointY="9.625" />
+        <EntityTypeShape EntityType="Model.Apps_UsersRole" Width="2.125" PointX="4.25" PointY="0.625" />
         <AssociationConnector Association="Model.Apps_UsersRoleApps_Document" />
         <AssociationConnector Association="Model.Apps_UsersRoleApps" ManuallyRouted="false" >
         </AssociationConnector>
-        <EntityTypeShape EntityType="Model.vw_search" Width="2.125" PointX="0.875" PointY="7.375" />
-        <EntityTypeShape EntityType="Model.Apps_reports" Width="2.375" PointX="8.75" PointY="0.625" />
-        <EntityTypeShape EntityType="Model.Apps_reports_params" Width="2.625" PointX="11.375" PointY="0.625" />
+        <EntityTypeShape EntityType="Model.vw_search" Width="2.25" PointX="0.875" PointY="10.25" />
+        <EntityTypeShape EntityType="Model.Apps_reports" Width="2.375" PointX="7.25" PointY="0.625" />
+        <EntityTypeShape EntityType="Model.Apps_reports_params" Width="2.625" PointX="10" PointY="0.625" />
         <AssociationConnector Association="Model.FK_Apps_reportsApps_reports_params" />
         <AssociationConnector Association="Model.FK_Apps_userRolesApps_reports" />
-        <EntityTypeShape EntityType="Model.Apps_processes" Width="2.125" PointX="9.75" PointY="3.5" />
-        <EntityTypeShape EntityType="Model.Apps_REF_processes" Width="2.5" PointX="12.25" PointY="3.5" />
+        <EntityTypeShape EntityType="Model.Apps_processes" Width="2.5" PointX="0.875" PointY="12.5" />
+        <EntityTypeShape EntityType="Model.Apps_REF_processes" Width="2.5" PointX="0.875" PointY="15.25" />
         <AssociationConnector Association="Model.FK_Apps_processesApps_REF_processes" />
-        <EntityTypeShape EntityType="Model.Identity" Width="2.25" PointX="7.25" PointY="6.375" />
-        <EntityTypeShape EntityType="Model.Apps_password" Width="2.75" PointX="9.875" PointY="6.375" />
+        <EntityTypeShape EntityType="Model.Apps_password" Width="2.25" PointX="7.25" PointY="6.5" />
         <AssociationConnector Association="Model.FK_Apps_UsersRoleApps_password" />
+        <EntityTypeShape EntityType="Model.Apps_Users" Width="2.25" PointX="7.25" PointY="3.875" />
+        <AssociationConnector Association="Model.FK_Apps_UsersRoleApps_Users" />
+        <EntityTypeShape EntityType="Model.APPS_notices" Width="2" PointX="3.5" PointY="7.5" />
+        <EntityTypeShape EntityType="Model.Identity" Width="2.125" PointX="0.875" PointY="7.5" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

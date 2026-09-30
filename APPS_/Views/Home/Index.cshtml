@@ -10,7 +10,7 @@
     </div>
     <div class="cell-10">
         <div style="margin:50px;">
-            <h3 class="big-title" align="LEFT">@Apps_.Controllers.HomeController.global_Identity(1) App Portal</h3>
+            <h3 class="big-title" align="LEFT">@Apps_.Controllers.HomeController.global_Identity(1)</h3>
             <p>Applications and Resource management</p>
         </div>
     </div>
@@ -19,19 +19,9 @@
 <br />
 
 <div class="row">
-    <div class="cell-lg-1" style="margin-left: 50px; position:relative;">
-        <a id="app_box" data-role="tile" href="@Url.Action("Index", "Apps_processes")" data-size="medium" class="bg-black" data-cover="../Content/image/processes.png">
-            <span id="app_card" class="mif-arrow-up-right branding-bar"> Custom Processes</span>
-        </a>
-    </div>
     <div class="cell-lg-1" style="margin-left: 50px; position: relative;">
         <a id="app_box" data-role="tile" href="@Url.Action("Index", "Apps_password")" data-size="medium" class="bg-black" data-cover="../Content/image/passwords.png">
             <span id="app_card" class="mif-arrow-up-right branding-bar"> Password Manager</span>
-        </a>
-    </div>
-    <div class="cell-lg-1" style="margin-left: 50px; position: relative;">
-        <a id="app_box" data-role="tile" href="@Url.Action("Reports", "Home")" data-size="medium" class="bg-black" data-cover="../Content/image/reports.png">
-            <span id="app_card" class="mif-arrow-up-right branding-bar"> Custom Reporting</span>
         </a>
     </div>
 </div><br /><hr />
@@ -50,7 +40,7 @@
         <div class="row">
             @foreach (var item in Model)
             {
-                if (Request.IsAuthenticated && Roles.IsUserInRole("admin-issu") || Roles.IsUserInRole("admin-ict"))
+                if (Request.IsAuthenticated && Roles.IsUserInRole("admin"))
                 {
                     <div id="@Html.DisplayFor(modelItem => item.Apps_Category.name)">
                         <div class="cell-2">

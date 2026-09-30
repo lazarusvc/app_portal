@@ -35,9 +35,9 @@ namespace Apps_.Models
         public virtual DbSet<Apps_reports_params> Apps_reports_params { get; set; }
         public virtual DbSet<Apps_processes> Apps_processes { get; set; }
         public virtual DbSet<Apps_REF_processes> Apps_REF_processes { get; set; }
-        public virtual DbSet<Apps_password> Apps_password { get; set; }
-        public virtual DbSet<Apps_Users> Apps_Users { get; set; }
-        public virtual DbSet<APPS_notices> APPS_notices { get; set; }
         public virtual DbSet<Identity> Identities { get; set; }
+        public virtual DbSet<Apps_password> Apps_password { get; set; }
+        public virtual DbSet<APPS_notices> APPS_notices { get; set; }
+        public virtual DbSet<Apps_Users> Apps_Users { get; set; }
     }
 }

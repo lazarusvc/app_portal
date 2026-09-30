@@ -11,7 +11,7 @@ using static Apps_.FilterConfig;
 
 namespace Apps_.Controllers
 {
-    [CustomAuthorize(Roles = "admin-issu")]
+    [CustomAuthorize(Roles = "admin")]
     public class Apps_UsersController : Controller
     {
         private ModelContainer db = new ModelContainer();
@@ -45,21 +45,33 @@ namespace Apps_.Controllers
             return View();
         }
 
-        // POST: Apps_Users/Create
+        // POST: users/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,firstName,lastName,username,Apps_UsersRoleId")] Apps_Users apps_Users)
+        public ActionResult Create([Bind(Include = "Id,firstName,lastName,username,password,Apps_UsersRoleId")] Apps_Users apps_Users)
         {
             if (ModelState.IsValid)
             {
-                db.Apps_Users.Add(apps_Users);
+                // Hash passwords
+                // ==============
+                var hash_pwd = BCrypt.Net.BCrypt.HashPassword(apps_Users.password);
+
+                db.Apps_Users.Add(new Apps_Users
+                {
+                    firstName = apps_Users.firstName,
+                    lastName = apps_Users.lastName,
+                    username = apps_Users.username,
+                    password = hash_pwd,
+                    Apps_UsersRoleId = apps_Users.Apps_UsersRoleId
+                });
                 db.SaveChanges();
-                return RedirectToAction("Index");
+
+                return View();
             }
 
-            ViewBag.Apps_UsersRoleId = new SelectList(db.Apps_UsersRole, "Id", "name", apps_Users.Apps_UsersRoleId);
+            ViewBag.FK_userRolesId = new SelectList(db.Apps_UsersRole, "Id", "name", apps_Users.Apps_UsersRoleId);
             return View(apps_Users);
         }
 

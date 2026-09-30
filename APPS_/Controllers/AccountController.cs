@@ -1,5 +1,8 @@
 ﻿using Apps_.Models;
+using Apps_.Models;
 using System;
+using System.Linq;
+using System.Web.Helpers;
 using System.Web.Mvc;
 using System.Web.Security;
 
@@ -7,30 +10,46 @@ namespace Apps_.Controllers
 {
     public class AccountController : Controller
     {
+        private ModelContainer db = new ModelContainer();
+
         public ActionResult Login()
         {
             return View();
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Login(LoginViewModel model, string returnUrl)
         {
-            if (!this.ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                return this.View(model);
-            }
-            if (Membership.ValidateUser(model.UserName, model.Password))
-            {
-                FormsAuthentication.SetAuthCookie(model.UserName, model.RememberMe);
-                if (this.Url.IsLocalUrl(returnUrl) && returnUrl.Length > 1 && returnUrl.StartsWith("/")
-                    && !returnUrl.StartsWith("//") && !returnUrl.StartsWith("/\\"))
+                // ============================================================
+                // INTERNAL AUTHENTICATION
+
+                // Check & Verify Hash passwords in DB
+                string orig_pwd = db.Apps_Users.Where(x => x.username == model.UserName).Select(x => x.password).FirstOrDefault();
+                var IsPwdVerified = BCrypt.Net.BCrypt.Verify(model.Password, orig_pwd); 
+
+                // Check Valid user in DB
+                bool IsValidUser = db.Apps_Users.Any(u => u.username == model.UserName);
+
+                if (IsValidUser && IsPwdVerified)
                 {
-                    return this.Redirect(returnUrl);
+                    FormsAuthentication.SetAuthCookie(model.UserName, false);
+
+                    // Redirect to last page logoff
+                    if (Url.IsLocalUrl(returnUrl))
+                    {
+                        ViewBag.ReturnUrl = returnUrl;
+                        return Redirect(returnUrl);
+                    }
+
+                    // Pass: Return to home
+                    return RedirectToAction("Index", "Home");
                 }
-                return this.RedirectToAction("Index", "Home");
             }
-            this.ModelState.AddModelError(string.Empty, "The user name or password provided is incorrect.");
-            return this.View(model);
+            ModelState.AddModelError("", "invalid Username or Password");
+            return View();
         }
 
         public ActionResult LogOff()

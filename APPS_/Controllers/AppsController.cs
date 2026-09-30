@@ -12,7 +12,7 @@ using static Apps_.FilterConfig;
 
 namespace Apps_.Controllers
 {
-    [CustomAuthorize(Roles = "admin-issu")]
+    [CustomAuthorize(Roles = "admin")]
     public class AppsController : Controller
     {
         private string fileName;

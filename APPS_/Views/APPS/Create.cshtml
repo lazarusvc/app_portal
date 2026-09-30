@@ -29,8 +29,7 @@
                     <label>Location:</label>
                     @Html.DropDownListFor(model => model.loc, new List<SelectListItem>
                         {
-                            new SelectListItem() { Text = "Computer Centre Servers", Value = "Computer Centre Servers" },
-                            new SelectListItem() { Text = "ICT DataCentre", Value = "ICT DataCentre" },
+                            new SelectListItem() { Text = "On Site", Value = "On Site" },
                             new SelectListItem() { Text = "Other", Value = "Other" }
                         }, null, htmlAttributes: new { data_role = "select" })
                     @Html.ValidationMessageFor(model => model.loc, "", new { @class = "fg-magenta" })

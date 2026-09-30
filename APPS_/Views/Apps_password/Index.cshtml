@@ -3,13 +3,14 @@
 @{
     ViewBag.Title = "Index";
 }
+<br/>
 <a href="@Url.Action("Create")" class="image-button outline" style="text-decoration: none !important; float: right;">
     <span class="mif-chevron-thin-right icon"></span>
     <span class="caption">Create New</span>
 </a>
 <div class="row">
     <div class="cell-lg-4" style="background: #f8f8f8; max-height: 100%; border-left: 1px solid #e4e4e4;">
-        <h3 class="big-title">@Apps_.Controllers.HomeController.global_Identity(1) Password Manager</h3>
+        <h3 class="big-title">Password Manager</h3>
         <p>
             Powered by <a href="https://github.com/spewu/nuget-authenticated-encryption">Authenticated Encryption</a>
             <br />built-in libaries of .NET AES and HMAC algorithms
@@ -32,7 +33,7 @@
 </div>
 
 @Scripts.Render("~/bundles/jquery")
-<script>
+<script type="text/javascript">
     $(document).ready(function () {
         // Partial View Data Logic
         // =============================

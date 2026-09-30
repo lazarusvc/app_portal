@@ -18,7 +18,7 @@ namespace Apps_.Controllers
         private ModelContainer db = new ModelContainer();
 
         // GET: Apps_Document
-        [CustomAuthorize(Roles = "admin-issu")]
+        [CustomAuthorize(Roles = "admin")]
         public ActionResult Index()
         {
             var apps_Document = db.Apps_Document.Include(a => a.Apps_UsersRole);
@@ -41,7 +41,7 @@ namespace Apps_.Controllers
         }
 
         // GET: Apps_Document/Create
-        [CustomAuthorize(Roles = "admin-issu")]
+        [CustomAuthorize(Roles = "admin")]
         public ActionResult Create()
         {
             ViewBag.Apps_UsersRoleId = new SelectList(db.Apps_UsersRole, "Id", "name");
@@ -99,7 +99,7 @@ namespace Apps_.Controllers
         }
 
         // GET: Apps_Document/Edit/5
-        [CustomAuthorize(Roles = "admin-issu")]
+        [CustomAuthorize(Roles = "admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -157,7 +157,7 @@ namespace Apps_.Controllers
         }
 
         // GET: Apps_Document/Delete/5
-        [CustomAuthorize(Roles = "admin-issu")]
+        [CustomAuthorize(Roles = "admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)

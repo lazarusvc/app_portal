@@ -12,15 +12,13 @@ namespace Apps_.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Apps_Users
+    public partial class APPS_notices
     {
-        public int Id { get; set; }
-        public string firstName { get; set; }
-        public string lastName { get; set; }
-        public string username { get; set; }
-        public int Apps_UsersRoleId { get; set; }
-        public string password { get; set; }
-    
-        public virtual Apps_UsersRole Apps_UsersRole { get; set; }
+        public string Id { get; set; }
+        public string content { get; set; }
+        public System.DateTime dateModified { get; set; }
+        public System.DateTime expires { get; set; }
+        public string ipRestriction { get; set; }
+        public string link { get; set; }
     }
 }

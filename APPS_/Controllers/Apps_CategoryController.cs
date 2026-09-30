@@ -11,7 +11,7 @@ using static Apps_.FilterConfig;
 
 namespace Apps_.Controllers
 {
-    [CustomAuthorize(Roles = "admin-issu")]
+    [CustomAuthorize(Roles = "admin")]
     public class Apps_CategoryController : Controller
     {
         private ModelContainer db = new ModelContainer();

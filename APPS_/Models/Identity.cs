@@ -21,5 +21,6 @@ namespace Apps_.Models
         public string aboutDesc { get; set; }
         public string contactDesc { get; set; }
         public string footerDesc { get; set; }
+        public string gravatar { get; set; }
     }
 }

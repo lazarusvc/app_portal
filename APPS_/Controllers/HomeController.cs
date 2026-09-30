@@ -45,6 +45,9 @@ namespace Apps_.Controllers
                     case 6: // ---------------------------------------------------------------- arg6: - ContactDesc
                         results = db.Identities.Select(x => x.contactDesc).FirstOrDefault();
                         break;
+                    case 7: // ---------------------------------------------------------------- arg7: - Gravatar
+                        results = db.Identities.Select(x => x.gravatar).FirstOrDefault();
+                        break;  
                 }
             }
             catch (Exception e)
